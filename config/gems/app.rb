@@ -3,6 +3,7 @@ gem "cssbundling-rails"
 gem "inline_svg"
 gem "name_of_person"
 # gem "strong_migrations"
+gem "devise"
 
 group :development, :test do
   gem "erb_lint"

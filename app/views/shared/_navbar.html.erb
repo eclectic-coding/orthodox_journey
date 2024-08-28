@@ -12,7 +12,7 @@
     <div class="hidden w-full lg:block lg:w-auto" id="navbar-default">
       <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-200 rounded-lg bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
         <% if user_signed_in? %>
-          <li><%= button_to "Log out", "#", method: :delete, class: "nav-link" %></li>
+          <li><%= button_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
         <% else %>
           <li><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
           <li><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>

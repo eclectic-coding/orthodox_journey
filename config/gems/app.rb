@@ -4,6 +4,7 @@ gem "inline_svg"
 gem "name_of_person"
 # gem "strong_migrations"
 gem "devise"
+gem "pundit"
 
 group :development, :test do
   gem "erb_lint"

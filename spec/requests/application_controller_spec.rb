@@ -3,17 +3,14 @@ require 'rails_helper'
 
 RSpec.describe ApplicationController, type: :controller do
   controller do
-    # Define a dummy action to test the configure_permitted_parameters method
     def dummy
       render plain: 'dummy'
     end
 
-    # Define the resource_class method to avoid the MockExpectationError
     def resource_class
       User
     end
 
-    # Make after_sign_in_path_for public for testing purposes
     public :after_sign_in_path_for
   end
 

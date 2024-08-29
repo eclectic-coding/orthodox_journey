@@ -1,6 +1,9 @@
 if ENV["RAILS_ENV"] ||= "test"
   require "simplecov"
   SimpleCov.start "rails" do
+    add_filter "/app/channels/"
+    add_filter "/app/jobs/"
+    add_filter "/app/mailers/"
     add_filter "/lib/"
   end
 end
@@ -37,10 +40,10 @@ RSpec.configure do |config|
   ]
   config.use_transactional_fixtures = true
   config.include FactoryBot::Syntax::Methods
-  # config.include Warden::Test::Helpers # helpers for system tests
-  # config.include Devise::Test::IntegrationHelpers, type: :request
-  # config.include Devise::Test::IntegrationHelpers, type: :component
-  # config.include Devise::Test::ControllerHelpers, type: :view
+  config.include Warden::Test::Helpers # helpers for system tests
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :component
+  config.include Devise::Test::ControllerHelpers, type: :view
   config.include Turbo::FramesHelper, type: :system
   config.include Turbo::StreamsHelper, type: :system
 

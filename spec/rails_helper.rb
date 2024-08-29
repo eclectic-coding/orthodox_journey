@@ -42,6 +42,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Warden::Test::Helpers # helpers for system tests
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :component
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Turbo::FramesHelper, type: :system

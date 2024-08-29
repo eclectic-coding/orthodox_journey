@@ -27,5 +27,5 @@ class User < ApplicationRecord
 
   has_person_name
 
-  enum role: { subscriber: "subscriber", admin: "admin" }
+  enum :role, { subscriber: "subscriber", admin: "admin" }
 end

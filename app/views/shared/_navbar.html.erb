@@ -35,9 +35,7 @@
           data-dropdown-toggle="dropdown"
         >
           <span class="sr-only">Open user menu</span>
-          <img class="w-8 h-8 rounded-full"
-               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
-               alt="user photo" />
+          <%= image_tag gravatar_url_for(current_user.email), class: "w-8 h-8 rounded-full" %>
         </button>
         <!-- Dropdown menu -->
         <div
@@ -45,47 +43,34 @@
           id="dropdown"
         >
           <div class="py-3 px-4">
-              <span class="block text-sm font-semibold text-gray-900 dark:text-white">
-                <%= current_user.name %>
-              </span
-              >
-            <span
-              class="block text-sm text-gray-900 truncate dark:text-white"
-            ><%= current_user.email %></span
-            >
+            <span class="block text-sm font-semibold text-gray-900 dark:text-white"><%= current_user.name %></span>
+            <span class="block text-sm text-gray-900 truncate dark:text-white"><%= current_user.email %></span>
           </div>
-          <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+          <ul class="py-1" aria-labelledby="dropdown">
+            <% if user_signed_in? && current_user.admin? %>
+              <li>
+                <%= link_to admin_dashboard_show_path, class: "profile-nav-link" do %>
+                  Admin dashboard
+                <% end %>
+              </li>
+            <% else %>
+              user dashboard
+            <% end %>
             <li>
-              <a href="#"
-                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-              >My profile</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-              >Account settings</a
-              >
+              <a href="#" class="profile-nav-link">
+                Account settings
+              </a>
             </li>
           </ul>
-          <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+          <ul class="py-1" aria-labelledby="dropdown">
             <li>
-              <a
-                href="#"
-                class="flex items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                <svg class="mr-2 w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                        d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                        clip-rule="evenodd"></path>
-                </svg>
+              <a href="#" class="profile-nav-link">
                 My likes
               </a>
             </li>
           </ul>
           <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
-            <li><%= button_to "Log out", destroy_user_session_path, method: :delete, class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %></li>
+            <li><%= button_to "Log out", destroy_user_session_path, method: :delete, class: "profile-nav-link" %></li>
           </ul>
         </div>
       </div>

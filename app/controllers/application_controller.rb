@@ -15,6 +15,12 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    current_user.admin? ? admin_root_path : root_path
+    if current_user.admin?
+      admin_root_path
+    elsif current_user.subscriber?
+      user_root_path
+    else
+      root_path
+    end
   end
 end

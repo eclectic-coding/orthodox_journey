@@ -56,7 +56,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
 
     it 'redirects to root_path for non-admin users' do
-      expect(controller.after_sign_in_path_for(user)).to eq(root_path)
+      expect(controller.after_sign_in_path_for(user)).to eq(user_root_path)
     end
   end
 end

@@ -22,7 +22,7 @@
       </button>
       <%= link_to root_path, class: "flex items-center justify-between mr-4" do %>
         <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="Flowbite Logo" />
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Orthodox Journey</span>
       <% end %>
     </div>
     <% if user_signed_in? %>
@@ -49,25 +49,22 @@
           <ul class="py-1" aria-labelledby="dropdown">
             <% if user_signed_in? && current_user.admin? %>
               <li>
-                <%= link_to admin_dashboard_show_path, class: "profile-nav-link" do %>
+                <%= link_to admin_root_path, class: "profile-nav-link" do %>
                   Admin dashboard
                 <% end %>
               </li>
             <% else %>
-              user dashboard
+              <li>
+                <%= link_to user_root_path, class: "profile-nav-link" do %>
+                  User dashboard
+                <% end %>
+              </li>
+              <li>
+                <%= link_to edit_user_registration_path(current_user), class: "profile-nav-link" do %>
+                  Account settings
+                <% end %>
+              </li>
             <% end %>
-            <li>
-              <a href="#" class="profile-nav-link">
-                Account settings
-              </a>
-            </li>
-          </ul>
-          <ul class="py-1" aria-labelledby="dropdown">
-            <li>
-              <a href="#" class="profile-nav-link">
-                My likes
-              </a>
-            </li>
           </ul>
           <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
             <li><%= button_to "Log out", destroy_user_session_path, method: :delete, class: "profile-nav-link" %></li>

@@ -36,8 +36,13 @@ module RailsOrthodoxJourney
     config.time_zone = "Eastern Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
-    config.generators.helper = false
+    config.generators do |g|
+      g.system_tests = nil
+      g.helper = false
+      g.test_framework :rspec,
+        view_specs: false,
+        routing_specs: false,
+        controller_specs: false
+    end
   end
 end

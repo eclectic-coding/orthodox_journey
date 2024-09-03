@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get "dashboard/show"
-  end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
@@ -9,6 +6,7 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   devise_for :users
+  get "/users/dashboard" => "users#show", as: :user_root
 
   authenticate :user, lambda { |u| u.admin? } do
     namespace :admin do

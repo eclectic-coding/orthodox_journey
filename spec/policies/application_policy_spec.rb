@@ -59,4 +59,3 @@ RSpec.describe ApplicationPolicy do
     end
   end
 end# frozen_string_literal: true
-

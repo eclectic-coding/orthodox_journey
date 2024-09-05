@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     namespace :admin do
       root to: "dashboard#show"
+      resources :users, only: %i[index show]
     end
   end
 

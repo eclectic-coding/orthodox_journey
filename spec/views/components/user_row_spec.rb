@@ -3,7 +3,8 @@
 require "rails_helper"
 
 describe UserRow::Component do
-  let(:options) { {} }
+  let(:user) { create(:user) }
+  let(:options) { { user: user } }
   let(:component) { UserRow::Component.new(**options) }
 
   subject { rendered_content }
@@ -11,6 +12,9 @@ describe UserRow::Component do
   it "renders" do
     render_inline(component)
 
-    is_expected.to have_css "div"
+    expect(page).to have_content(user.email)
+    expect(page).to have_content(user.role)
+    expect(page).to have_content(user.sign_in_count)
+    expect(page).to have_content(component.sign_in_date)
   end
 end

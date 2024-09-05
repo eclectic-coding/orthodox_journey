@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe PageTitle::Component do
-  let(:options) { {} }
+  let(:options) { { title: "Title" } }
   let(:component) { PageTitle::Component.new(**options) }
 
   subject { rendered_content }
@@ -11,6 +11,6 @@ describe PageTitle::Component do
   it "renders" do
     render_inline(component)
 
-    is_expected.to have_css "div"
+    expect(page).to have_css("h1", text: "Title")
   end
 end

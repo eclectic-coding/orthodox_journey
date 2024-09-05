@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  append_view_path Rails.root.join("app", "views", "controllers")
+
   protected
 
   def configure_permitted_parameters

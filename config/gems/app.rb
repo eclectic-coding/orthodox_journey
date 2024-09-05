@@ -5,6 +5,8 @@ gem "name_of_person"
 # gem "strong_migrations"
 gem "devise"
 gem "pundit"
+gem "view_component"
+gem "dry-initializer"
 
 group :development, :test do
   gem "erb_lint"

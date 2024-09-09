@@ -10,5 +10,6 @@ end
 group :test do
   gem "webmock"
   gem "simplecov", "~> 0.21.2", require: false
+  gem "cuprite"
   gem "test-prof"
 end

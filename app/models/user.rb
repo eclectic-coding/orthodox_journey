@@ -29,6 +29,9 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  has_many :subscriptions, dependent: :destroy
+  has_many :subscribed_books, through: :subscriptions, source: :book
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable, :confirmable

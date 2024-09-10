@@ -131,3 +131,4 @@ build-iPhoneSimulator/
 n
 
 config/certs/*
+app/builds/*

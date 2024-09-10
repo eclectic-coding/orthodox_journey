@@ -19,5 +19,4 @@ class Admin::BooksController < ApplicationController
   end
 
   private
-
 end

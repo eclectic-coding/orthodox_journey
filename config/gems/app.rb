@@ -7,6 +7,7 @@ gem "devise"
 gem "pundit"
 gem "view_component"
 gem "dry-initializer"
+gem "sidekiq"
 
 group :development, :test do
   gem "erb_lint"
@@ -15,7 +16,7 @@ end
 
 group :development do
   gem "bundle-audit", require: false
-  # gem "bullet" # Uncomment if you want to use Bullet (doesn't support Rails 7.2 beta yet)
+  gem "bullet" # Uncomment if you want to use Bullet (doesn't support Rails 7.2 beta yet)
   gem "letter_opener_web"
   gem "rails-erd"
 end

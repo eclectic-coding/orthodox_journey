@@ -3,14 +3,16 @@
 require "rails_helper"
 
 describe BookRow::Component do
-  let(:options) { {} }
-  let(:component) { BookRow::Component.new(**options) }
+  let(:book) { create(:book) }
+  let(:component) { BookRow::Component.new(book: book) }
 
   subject { rendered_content }
 
   it "renders" do
     render_inline(component)
 
-    is_expected.to have_css "div"
+    expect(page).to have_content(book.title)
+    expect(page).to have_content(book.author)
+    expect(page).to have_content(book.authored_at.strftime("%y"))
   end
 end

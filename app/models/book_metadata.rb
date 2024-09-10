@@ -28,14 +28,4 @@ class BookMetadata
   def image
     nil
   end
-
-  # def call
-  #   document = Nokogiri::HTML(URI.open(@uri))
-  #   content_div = document.at_css('div.mw-content-ltr.mw-parser-output')
-  #   first_paragraph = content_div.css('p').find { |p| p['class'].nil? }
-  #   first_paragraph ? first_paragraph.inner_text.gsub(/\[\d+\]/, '') : nil
-  # rescue StandardError => e
-  #   Rails.logger.error("Failed to fetch or parse content: #{e.message}")
-  #   nil
-  # end
 end

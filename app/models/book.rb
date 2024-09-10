@@ -21,14 +21,18 @@ class Book < ApplicationRecord
   before_save :set_wiki_url
   after_commit :set_description, on: :create
 
+  validates :title, presence: true, uniqueness: true
+  validates :author, presence: true
+  validates :authored_at, presence: true
+
   private
 
   def set_wiki_url
-    self.wiki_url ||= "https://en.wikipedia.org/wiki/#{title}"
+    book_title = title.gsub(' ', '_')
+    self.wiki_url ||= "https://en.wikipedia.org/wiki/#{book_title}"
   end
 
   def set_description
-    p "Enqueuing job for Book ID: #{self.id}"
     BookMetadataJob.perform_later(self.id)
   end
 end

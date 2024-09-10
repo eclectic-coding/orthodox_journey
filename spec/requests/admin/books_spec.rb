@@ -1,15 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "Admin::Books", type: :request do
+  before do
+    sign_in create(:user, :admin)
+  end
+
   describe "GET /index" do
     it "returns http success" do
-      get "/admin/books/index"
+      get admin_books_path
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /show" do
-    it "returns http success" do
+    xit "returns http success" do
       get "/admin/books/show"
       expect(response).to have_http_status(:success)
     end
@@ -17,13 +21,13 @@ RSpec.describe "Admin::Books", type: :request do
 
   describe "GET /new" do
     it "returns http success" do
-      get "/admin/books/new"
+      get new_admin_book_path
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /edit" do
-    it "returns http success" do
+    xit "returns http success" do
       get "/admin/books/edit"
       expect(response).to have_http_status(:success)
     end

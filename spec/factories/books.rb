@@ -8,7 +8,9 @@
 #  completed   :boolean          default(FALSE)
 #  description :text
 #  reading     :boolean          default(FALSE)
+#  reading_url :string
 #  title       :string
+#  wiki_url    :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

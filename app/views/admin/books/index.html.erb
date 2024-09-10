@@ -8,7 +8,7 @@
       <tr>
         <th scope="col" class="px-6 py-3">Title</th>
         <th scope="col" class="px-6 py-3">Author</th>
-        <th scope="col" class="px-6 py-3">Published Date</th>
+        <th scope="col" class="px-6 py-3">Date</th>
         <th scope="col" class="px-6 py-3">Published</th>
         <th scope="col" class="px-6 py-3">
           <span class="sr-only">Edit</span>
@@ -22,3 +22,5 @@
     </tbody>
   </table>
 </div>
+
+<%= BookMetadata.retrieve_from('https://en.wikipedia.org/wiki/Didache').attributes %>

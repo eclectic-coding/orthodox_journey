@@ -21,6 +21,7 @@ require "view_component/test_helpers"
 require "capybara/rails"
 require "capybara/rspec"
 require "fuubar"
+require "pundit/rspec"
 require "webmock/rspec"
 
 Rails.root.glob("spec/support/**/*.rb").sort.each { |f| require f }

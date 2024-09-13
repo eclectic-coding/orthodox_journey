@@ -46,5 +46,10 @@ module RailsOrthodoxJourney
         routing_specs: false,
         controller_specs: false
     end
+
+    # Conditionally require generators only in non-production environments
+    unless Rails.env.production?
+      require "rails/generators"
+    end
   end
 end

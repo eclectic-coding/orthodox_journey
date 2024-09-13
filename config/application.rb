@@ -14,6 +14,8 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "rails/test_unit/railtie"
 
+require 'view_component'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -36,7 +38,7 @@ module RailsOrthodoxJourney
     # in config/environments, which are processed later.
     #
     config.time_zone = "Eastern Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("services")
+    config.eager_load_paths << Rails.root.join("app", "views", "components")
 
     config.generators do |g|
       g.system_tests = nil

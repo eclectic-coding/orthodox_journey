@@ -100,12 +100,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :user_name => Rails.application.credentials.dig(:ses, :user_name),
     :password => Rails.application.credentials.dig(:ses, :password),
-    :domain => Rails.application.credentials.dig(:ses, :domain),
     :address => Rails.application.credentials.dig(:ses, :smtp_server),
     :port => 587,
     :authentication => :plain,
-    :enable_starttls_auto => true,
-    :open_timeout => 5,
-    :read_timeout => 5
+    :enable_starttls_auto => true
   }
 end

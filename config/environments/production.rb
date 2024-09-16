@@ -92,21 +92,17 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-  host = 'orthodoxjourney.me'
+  host = Rails.application.credentials.dig(:domain)
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :user_name => Rails.application.credentials.dig(:ses, :user_name),
     :password => Rails.application.credentials.dig(:ses, :password),
-    :domain => Rails.application.credentials.dig(:ses, :domain),
     :address => Rails.application.credentials.dig(:ses, :smtp_server),
     :port => 587,
     :authentication => :plain,
-    :enable_starttls_auto => true,
-    :open_timeout => 5,
-    :read_timeout => 5
+    :enable_starttls_auto => true
   }
 end

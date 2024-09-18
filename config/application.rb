@@ -14,6 +14,8 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "rails/test_unit/railtie"
 
+require 'view_component'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -28,7 +30,7 @@ module RailsOrthodoxJourney
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w[assets tasks])
+    config.autoload_lib(ignore: %w[assets generators tasks templates])
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -36,7 +38,7 @@ module RailsOrthodoxJourney
     # in config/environments, which are processed later.
     #
     config.time_zone = "Eastern Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("services")
+    config.eager_load_paths << Rails.root.join("app", "views", "components")
 
     config.generators do |g|
       g.system_tests = nil
@@ -45,6 +47,11 @@ module RailsOrthodoxJourney
         view_specs: false,
         routing_specs: false,
         controller_specs: false
+    end
+
+    # Conditionally require generators only in non-production environments
+    unless Rails.env.production?
+      require "rails/generators"
     end
   end
 end

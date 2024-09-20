@@ -39,4 +39,7 @@ class User < ApplicationRecord
   has_person_name
 
   enum :role, { subscriber: "subscriber", admin: "admin" }
+
+  # Remove :email from the list of filtered attributes
+  self.filter_attributes -= %i[email]
 end

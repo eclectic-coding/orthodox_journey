@@ -4,6 +4,7 @@ class Users::BooksController < ApplicationController
   layout 'user'
 
   def index
+    @books = Book.all
   end
 
   def show

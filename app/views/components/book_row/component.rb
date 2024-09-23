@@ -8,7 +8,7 @@ class BookRow::Component < ApplicationViewComponent
       if helpers.current_user.admin?
         link_to "Edit", edit_admin_book_path(book)
       else
-        link_to "Subscribe", book_path(book)
+        link_to "Subscribe", book_subscriptions_path(book), data: { turbo_method: :post }
       end
     end
   end

@@ -5,6 +5,7 @@ class Users::BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @my_books = current_user.subscribed_books
   end
 
   def show

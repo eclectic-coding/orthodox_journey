@@ -84,7 +84,19 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: orthodox__production
-  username: orthodox_
-  password: <%= ENV["orthodox__DATABASE_PASSWORD"] %>
+  primary:
+    <<: *default
+    database: orthodox_production
+  cache:
+    <<: *default
+    database: orthodox_cache
+    migrations_path: db/cache_schema
+  queue:
+    <<: *default
+    database: orthodox_queue
+    migrations_path: db/queue_schema
+  cable:
+    <<: *default
+    database: orthodox_cable
+    migrations_path: db/cable_schema
+

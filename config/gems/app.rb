@@ -6,6 +6,7 @@ gem "name_of_person"
 gem "devise"
 gem "pundit"
 gem "view_component"
+gem "view_component-contrib", "~> 0.2.3"
 gem "dry-initializer"
 gem "sidekiq"
 

@@ -3,9 +3,10 @@ gem "cssbundling-rails"
 gem "inline_svg"
 gem "name_of_person"
 # gem "strong_migrations"
-gem "devise"
+gem "devise", github: "heartcombo/devise", ref: "refs/pull/5695/head"
 gem "pundit"
 gem "view_component"
+gem "view_component-contrib", "~> 0.2.3"
 gem "dry-initializer"
 gem "sidekiq"
 
@@ -16,7 +17,7 @@ end
 
 group :development do
   gem "bundle-audit", require: false
-  gem "bullet" # Uncomment if you want to use Bullet (doesn't support Rails 7.2 beta yet)
+  # gem "bullet" # Uncomment if you want to use Bullet (doesn't support Rails beta)
   gem "letter_opener_web"
   gem "rails-erd"
 end

@@ -4,7 +4,7 @@ eval_gemfile 'config/gems/app.rb'
 eval_gemfile 'config/gems/rspec_gemfile.rb'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", github: "rails/rails", branch: "main"
+gem "rails", ">= 8.0.0.beta1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use pg as the database for Active Record

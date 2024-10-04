@@ -1,6 +1,6 @@
 group :development, :test do
-  gem "rspec-rails", "~> 6.1.0"
-  gem "factory_bot_rails"
+  gem "rspec-rails"
+  gem "factory_bot_rails", github: "thoughtbot/factory_bot_rails", ref: "refs/pull/495/head"
 end
 
 group :development do

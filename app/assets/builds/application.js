@@ -1,4 +1,10 @@
- (() => new EventSource("http://localhost:3100").onmessage = () => location.reload())();
+
+        (() => {
+          if (typeof EventSource !== 'undefined') {
+            new EventSource("http://localhost:3100").onmessage = () => location.reload()
+          }
+        })();
+      
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -6708,6 +6714,7 @@
                       Dropdown2.prototype.show = function() {
                         this._targetEl.classList.remove("hidden");
                         this._targetEl.classList.add("block");
+                        this._targetEl.removeAttribute("aria-hidden");
                         this._popperInstance.setOptions(function(options) {
                           return __assign(__assign({}, options), { modifiers: __spreadArray(__spreadArray([], options.modifiers, true), [
                             { name: "eventListeners", enabled: true }
@@ -6721,6 +6728,7 @@
                       Dropdown2.prototype.hide = function() {
                         this._targetEl.classList.remove("block");
                         this._targetEl.classList.add("hidden");
+                        this._targetEl.setAttribute("aria-hidden", "true");
                         this._popperInstance.setOptions(function(options) {
                           return __assign(__assign({}, options), { modifiers: __spreadArray(__spreadArray([], options.modifiers, true), [
                             { name: "eventListeners", enabled: false }

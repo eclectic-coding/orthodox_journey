@@ -1,5 +1,6 @@
 class Admin::BooksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_book, only: %i[ show edit ]
 
   layout "admin"
 
@@ -19,4 +20,8 @@ class Admin::BooksController < ApplicationController
   end
 
   private
+
+  def set_book
+    @book = Book.find(params[:id])
+  end
 end

@@ -13,8 +13,8 @@ RSpec.describe "Admin::Books", type: :request do
   end
 
   describe "GET /show" do
-    xit "returns http success" do
-      get "/admin/books/show"
+    it "returns http success" do
+      get admin_book_path(create(:book))
       expect(response).to have_http_status(:success)
     end
   end
@@ -27,8 +27,9 @@ RSpec.describe "Admin::Books", type: :request do
   end
 
   describe "GET /edit" do
-    xit "returns http success" do
-      get "/admin/books/edit"
+    it "returns http success" do
+      book = create(:book)
+      get edit_admin_book_path(book)
       expect(response).to have_http_status(:success)
     end
   end

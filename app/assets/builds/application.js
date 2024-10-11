@@ -1,4 +1,10 @@
- (() => new EventSource("http://localhost:3100").onmessage = () => location.reload())();
+
+        (() => {
+          if (typeof EventSource !== 'undefined') {
+            new EventSource("http://localhost:3100").onmessage = () => location.reload()
+          }
+        })();
+      
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -2885,7 +2891,7 @@
                   }
                   function processOptions(options, datepicker) {
                     var inOpts = Object.assign({}, options);
-                    var config = {};
+                    var config2 = {};
                     var locales2 = datepicker.constructor.locales;
                     var _ref = datepicker.config || {}, format = _ref.format, language = _ref.language, locale = _ref.locale, maxDate = _ref.maxDate, maxView = _ref.maxView, minDate = _ref.minDate, pickLevel = _ref.pickLevel, startView = _ref.startView, weekStart = _ref.weekStart;
                     if (inOpts.language) {
@@ -2902,7 +2908,7 @@
                       }
                       delete inOpts.language;
                       if (lang) {
-                        language = config.language = lang;
+                        language = config2.language = lang;
                         var origLocale = locale || locales2[defaultLang];
                         locale = Object.assign({
                           format: defaultFormat,
@@ -2911,13 +2917,13 @@
                         if (language !== defaultLang) {
                           Object.assign(locale, locales2[language]);
                         }
-                        config.locale = locale;
+                        config2.locale = locale;
                         if (format === origLocale.format) {
-                          format = config.format = locale.format;
+                          format = config2.format = locale.format;
                         }
                         if (weekStart === origLocale.weekStart) {
-                          weekStart = config.weekStart = locale.weekStart;
-                          config.weekEnd = calcEndOfWeek(locale.weekStart);
+                          weekStart = config2.weekStart = locale.weekStart;
+                          config2.weekEnd = calcEndOfWeek(locale.weekStart);
                         }
                       }
                     }
@@ -2926,7 +2932,7 @@
                       var hasToValue = typeof inOpts.format.toValue === "function";
                       var validFormatString = reFormatTokens.test(inOpts.format);
                       if (hasToDisplay && hasToValue || validFormatString) {
-                        format = config.format = inOpts.format;
+                        format = config2.format = inOpts.format;
                       }
                       delete inOpts.format;
                     }
@@ -2941,18 +2947,18 @@
                       delete inOpts.maxDate;
                     }
                     if (maxDt < minDt) {
-                      minDate = config.minDate = maxDt;
-                      maxDate = config.maxDate = minDt;
+                      minDate = config2.minDate = maxDt;
+                      maxDate = config2.maxDate = minDt;
                     } else {
                       if (minDate !== minDt) {
-                        minDate = config.minDate = minDt;
+                        minDate = config2.minDate = minDt;
                       }
                       if (maxDate !== maxDt) {
-                        maxDate = config.maxDate = maxDt;
+                        maxDate = config2.maxDate = maxDt;
                       }
                     }
                     if (inOpts.datesDisabled) {
-                      config.datesDisabled = inOpts.datesDisabled.reduce(function(dates, dt) {
+                      config2.datesDisabled = inOpts.datesDisabled.reduce(function(dates, dt) {
                         var date = parseDate(dt, format, locale);
                         return date !== void 0 ? pushUnique(dates, date) : dates;
                       }, []);
@@ -2961,36 +2967,36 @@
                     if (inOpts.defaultViewDate !== void 0) {
                       var viewDate = parseDate(inOpts.defaultViewDate, format, locale);
                       if (viewDate !== void 0) {
-                        config.defaultViewDate = viewDate;
+                        config2.defaultViewDate = viewDate;
                       }
                       delete inOpts.defaultViewDate;
                     }
                     if (inOpts.weekStart !== void 0) {
                       var wkStart = Number(inOpts.weekStart) % 7;
                       if (!isNaN(wkStart)) {
-                        weekStart = config.weekStart = wkStart;
-                        config.weekEnd = calcEndOfWeek(wkStart);
+                        weekStart = config2.weekStart = wkStart;
+                        config2.weekEnd = calcEndOfWeek(wkStart);
                       }
                       delete inOpts.weekStart;
                     }
                     if (inOpts.daysOfWeekDisabled) {
-                      config.daysOfWeekDisabled = inOpts.daysOfWeekDisabled.reduce(sanitizeDOW, []);
+                      config2.daysOfWeekDisabled = inOpts.daysOfWeekDisabled.reduce(sanitizeDOW, []);
                       delete inOpts.daysOfWeekDisabled;
                     }
                     if (inOpts.daysOfWeekHighlighted) {
-                      config.daysOfWeekHighlighted = inOpts.daysOfWeekHighlighted.reduce(sanitizeDOW, []);
+                      config2.daysOfWeekHighlighted = inOpts.daysOfWeekHighlighted.reduce(sanitizeDOW, []);
                       delete inOpts.daysOfWeekHighlighted;
                     }
                     if (inOpts.maxNumberOfDates !== void 0) {
                       var maxNumberOfDates = parseInt(inOpts.maxNumberOfDates, 10);
                       if (maxNumberOfDates >= 0) {
-                        config.maxNumberOfDates = maxNumberOfDates;
-                        config.multidate = maxNumberOfDates !== 1;
+                        config2.maxNumberOfDates = maxNumberOfDates;
+                        config2.multidate = maxNumberOfDates !== 1;
                       }
                       delete inOpts.maxNumberOfDates;
                     }
                     if (inOpts.dateDelimiter) {
-                      config.dateDelimiter = String(inOpts.dateDelimiter);
+                      config2.dateDelimiter = String(inOpts.dateDelimiter);
                       delete inOpts.dateDelimiter;
                     }
                     var newPickLevel = pickLevel;
@@ -2999,7 +3005,7 @@
                       delete inOpts.pickLevel;
                     }
                     if (newPickLevel !== pickLevel) {
-                      pickLevel = config.pickLevel = newPickLevel;
+                      pickLevel = config2.pickLevel = newPickLevel;
                     }
                     var newMaxView = maxView;
                     if (inOpts.maxView !== void 0) {
@@ -3008,7 +3014,7 @@
                     }
                     newMaxView = pickLevel > newMaxView ? pickLevel : newMaxView;
                     if (newMaxView !== maxView) {
-                      maxView = config.maxView = newMaxView;
+                      maxView = config2.maxView = newMaxView;
                     }
                     var newStartView = startView;
                     if (inOpts.startView !== void 0) {
@@ -3021,29 +3027,29 @@
                       newStartView = maxView;
                     }
                     if (newStartView !== startView) {
-                      config.startView = newStartView;
+                      config2.startView = newStartView;
                     }
                     if (inOpts.prevArrow) {
                       var prevArrow = parseHTML(inOpts.prevArrow);
                       if (prevArrow.childNodes.length > 0) {
-                        config.prevArrow = prevArrow.childNodes;
+                        config2.prevArrow = prevArrow.childNodes;
                       }
                       delete inOpts.prevArrow;
                     }
                     if (inOpts.nextArrow) {
                       var nextArrow = parseHTML(inOpts.nextArrow);
                       if (nextArrow.childNodes.length > 0) {
-                        config.nextArrow = nextArrow.childNodes;
+                        config2.nextArrow = nextArrow.childNodes;
                       }
                       delete inOpts.nextArrow;
                     }
                     if (inOpts.disableTouchKeyboard !== void 0) {
-                      config.disableTouchKeyboard = "ontouchstart" in document && !!inOpts.disableTouchKeyboard;
+                      config2.disableTouchKeyboard = "ontouchstart" in document && !!inOpts.disableTouchKeyboard;
                       delete inOpts.disableTouchKeyboard;
                     }
                     if (inOpts.orientation) {
                       var orientation = inOpts.orientation.toLowerCase().split(/\s+/g);
-                      config.orientation = {
+                      config2.orientation = {
                         x: orientation.find(function(x) {
                           return x === "left" || x === "right";
                         }) || "auto",
@@ -3057,16 +3063,16 @@
                       switch (inOpts.todayBtnMode) {
                         case 0:
                         case 1:
-                          config.todayBtnMode = inOpts.todayBtnMode;
+                          config2.todayBtnMode = inOpts.todayBtnMode;
                       }
                       delete inOpts.todayBtnMode;
                     }
                     Object.keys(inOpts).forEach(function(key) {
                       if (inOpts[key] !== void 0 && hasProperty2(defaultOptions2, key)) {
-                        config[key] = inOpts[key];
+                        config2[key] = inOpts[key];
                       }
                     });
-                    return config;
+                    return config2;
                   }
                   var pickerTemplate = optimizeTemplateHTML('<div class="datepicker hidden">\n  <div class="datepicker-picker inline-block rounded-lg bg-white dark:bg-gray-700 shadow-lg p-4">\n    <div class="datepicker-header">\n      <div class="datepicker-title bg-white dark:bg-gray-700 dark:text-white px-2 py-3 text-center font-semibold"></div>\n      <div class="datepicker-controls flex justify-between mb-2">\n        <button type="button" class="bg-white dark:bg-gray-700 rounded-lg text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white text-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-gray-200 prev-btn"></button>\n        <button type="button" class="text-sm rounded-lg text-gray-900 dark:text-white bg-white dark:bg-gray-700 font-semibold py-2.5 px-5 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-200 view-switch"></button>\n        <button type="button" class="bg-white dark:bg-gray-700 rounded-lg text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white text-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-gray-200 next-btn"></button>\n      </div>\n    </div>\n    <div class="datepicker-main p-1"></div>\n    <div class="datepicker-footer">\n      <div class="datepicker-controls flex space-x-2 rtl:space-x-reverse mt-2">\n        <button type="button" class="%buttonClass% today-btn text-white bg-blue-700 !bg-primary-700 dark:bg-blue-600 dark:!bg-primary-600 hover:bg-blue-800 hover:!bg-primary-800 dark:hover:bg-blue-700 dark:hover:!bg-primary-700 focus:ring-4 focus:ring-blue-300 focus:!ring-primary-300 font-medium rounded-lg text-sm px-5 py-2 text-center w-1/2"></button>\n        <button type="button" class="%buttonClass% clear-btn text-gray-900 dark:text-white bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 focus:!ring-primary-300 font-medium rounded-lg text-sm px-5 py-2 text-center w-1/2"></button>\n      </div>\n    </div>\n  </div>\n</div>');
                   var daysTemplate = optimizeTemplateHTML('<div class="days">\n  <div class="days-of-week grid grid-cols-7 mb-1">'.concat(createTagRepeat("span", 7, {
@@ -3078,9 +3084,9 @@
                     "class": "week block flex-1 leading-9 border-0 rounded-lg cursor-default text-center text-gray-900 font-semibold text-sm"
                   }), "</div>\n</div>"));
                   var View2 = /* @__PURE__ */ function() {
-                    function View3(picker, config) {
+                    function View3(picker, config2) {
                       _classCallCheck(this, View3);
-                      Object.assign(this, config, {
+                      Object.assign(this, config2, {
                         picker,
                         element: parseHTML('<div class="datepicker-view flex"></div>').firstChild,
                         selected: []
@@ -3567,9 +3573,9 @@
                     }, "");
                   }
                   var YearsView = /* @__PURE__ */ function(_View) {
-                    function YearsView2(picker, config) {
+                    function YearsView2(picker, config2) {
                       _classCallCheck(this, YearsView2);
-                      return _callSuper(this, YearsView2, [picker, config]);
+                      return _callSuper(this, YearsView2, [picker, config2]);
                     }
                     _inherits(YearsView2, _View);
                     return _createClass(YearsView2, [{
@@ -3881,9 +3887,9 @@
                     }
                   }
                   function computeResetViewDate(datepicker) {
-                    var dates = datepicker.dates, config = datepicker.config;
-                    var viewDate = dates.length > 0 ? lastItemOf(dates) : config.defaultViewDate;
-                    return limitToRange(viewDate, config.minDate, config.maxDate);
+                    var dates = datepicker.dates, config2 = datepicker.config;
+                    var viewDate = dates.length > 0 ? lastItemOf(dates) : config2.defaultViewDate;
+                    return limitToRange(viewDate, config2.minDate, config2.maxDate);
                   }
                   function setViewDate(picker, newDate) {
                     var oldViewDate = new Date(picker.viewDate);
@@ -4007,12 +4013,12 @@
                       key: "place",
                       value: function place() {
                         var _this$element = this.element, classList = _this$element.classList, style = _this$element.style;
-                        var _this$datepicker = this.datepicker, config = _this$datepicker.config, inputField = _this$datepicker.inputField;
-                        var container = config.container;
+                        var _this$datepicker = this.datepicker, config2 = _this$datepicker.config, inputField = _this$datepicker.inputField;
+                        var container = config2.container;
                         var _this$element$getBoun = this.element.getBoundingClientRect(), calendarWidth = _this$element$getBoun.width, calendarHeight = _this$element$getBoun.height;
                         var _container$getBoundin = container.getBoundingClientRect(), containerLeft = _container$getBoundin.left, containerTop = _container$getBoundin.top, containerWidth = _container$getBoundin.width;
                         var _inputField$getBoundi = inputField.getBoundingClientRect(), inputLeft = _inputField$getBoundi.left, inputTop = _inputField$getBoundi.top, inputWidth = _inputField$getBoundi.width, inputHeight = _inputField$getBoundi.height;
-                        var _config$orientation = config.orientation, orientX = _config$orientation.x, orientY = _config$orientation.y;
+                        var _config$orientation = config2.orientation, orientX = _config$orientation.x, orientY = _config$orientation.y;
                         var scrollTop;
                         var left;
                         var top;
@@ -4308,32 +4314,32 @@
                     }
                     unfocus(datepicker);
                   }
-                  function stringifyDates(dates, config) {
+                  function stringifyDates(dates, config2) {
                     return dates.map(function(dt) {
-                      return formatDate(dt, config.format, config.locale);
-                    }).join(config.dateDelimiter);
+                      return formatDate(dt, config2.format, config2.locale);
+                    }).join(config2.dateDelimiter);
                   }
                   function processInputDates(datepicker, inputDates) {
                     var clear = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
-                    var config = datepicker.config, origDates = datepicker.dates, rangepicker = datepicker.rangepicker;
+                    var config2 = datepicker.config, origDates = datepicker.dates, rangepicker = datepicker.rangepicker;
                     if (inputDates.length === 0) {
                       return clear ? [] : void 0;
                     }
                     var rangeEnd = rangepicker && datepicker === rangepicker.datepickers[1];
                     var newDates = inputDates.reduce(function(dates, dt) {
-                      var date = parseDate(dt, config.format, config.locale);
+                      var date = parseDate(dt, config2.format, config2.locale);
                       if (date === void 0) {
                         return dates;
                       }
-                      if (config.pickLevel > 0) {
+                      if (config2.pickLevel > 0) {
                         var _dt = new Date(date);
-                        if (config.pickLevel === 1) {
+                        if (config2.pickLevel === 1) {
                           date = rangeEnd ? _dt.setMonth(_dt.getMonth() + 1, 0) : _dt.setDate(1);
                         } else {
                           date = rangeEnd ? _dt.setFullYear(_dt.getFullYear() + 1, 0, 0) : _dt.setMonth(0, 1);
                         }
                       }
-                      if (isInRange(date, config.minDate, config.maxDate) && !dates.includes(date) && !config.datesDisabled.includes(date) && !config.daysOfWeekDisabled.includes(new Date(date).getDay())) {
+                      if (isInRange(date, config2.minDate, config2.maxDate) && !dates.includes(date) && !config2.datesDisabled.includes(date) && !config2.daysOfWeekDisabled.includes(new Date(date).getDay())) {
                         dates.push(date);
                       }
                       return dates;
@@ -4341,7 +4347,7 @@
                     if (newDates.length === 0) {
                       return;
                     }
-                    if (config.multidate && !clear) {
+                    if (config2.multidate && !clear) {
                       newDates = newDates.reduce(function(dates, date) {
                         if (!origDates.includes(date)) {
                           dates.push(date);
@@ -4351,18 +4357,18 @@
                         return !newDates.includes(date);
                       }));
                     }
-                    return config.maxNumberOfDates && newDates.length > config.maxNumberOfDates ? newDates.slice(config.maxNumberOfDates * -1) : newDates;
+                    return config2.maxNumberOfDates && newDates.length > config2.maxNumberOfDates ? newDates.slice(config2.maxNumberOfDates * -1) : newDates;
                   }
                   function refreshUI(datepicker) {
                     var mode = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 3;
                     var quickRender = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : true;
-                    var config = datepicker.config, picker = datepicker.picker, inputField = datepicker.inputField;
+                    var config2 = datepicker.config, picker = datepicker.picker, inputField = datepicker.inputField;
                     if (mode & 2) {
-                      var newView = picker.active ? config.pickLevel : config.startView;
+                      var newView = picker.active ? config2.pickLevel : config2.startView;
                       picker.update().changeView(newView).render(quickRender);
                     }
                     if (mode & 1 && inputField) {
-                      inputField.value = stringifyDates(datepicker.dates, config);
+                      inputField.value = stringifyDates(datepicker.dates, config2);
                     }
                   }
                   function _setDate(datepicker, inputDates, options) {
@@ -4397,7 +4403,7 @@
                       _classCallCheck(this, Datepicker2);
                       element.datepicker = this;
                       this.element = element;
-                      var config = this.config = Object.assign({
+                      var config2 = this.config = Object.assign({
                         buttonClass: options.buttonClass && String(options.buttonClass) || "button",
                         container: document.body,
                         defaultViewDate: today(),
@@ -4405,22 +4411,22 @@
                         minDate: void 0
                       }, processOptions(defaultOptions2, this));
                       this._options = options;
-                      Object.assign(config, processOptions(options, this));
+                      Object.assign(config2, processOptions(options, this));
                       var inline = this.inline = element.tagName !== "INPUT";
                       var inputField;
                       var initialDates;
                       if (inline) {
-                        config.container = element;
-                        initialDates = stringToArray(element.dataset.date, config.dateDelimiter);
+                        config2.container = element;
+                        initialDates = stringToArray(element.dataset.date, config2.dateDelimiter);
                         delete element.dataset.date;
                       } else {
                         var container = options.container ? document.querySelector(options.container) : null;
                         if (container) {
-                          config.container = container;
+                          config2.container = container;
                         }
                         inputField = this.inputField = element;
                         inputField.classList.add("datepicker-input");
-                        initialDates = stringToArray(inputField.value, config.dateDelimiter);
+                        initialDates = stringToArray(inputField.value, config2.dateDelimiter);
                       }
                       if (rangepicker) {
                         var index = rangepicker.inputs.indexOf(inputField);
@@ -4441,7 +4447,7 @@
                         this.dates = inputDateValues;
                       }
                       if (inputField) {
-                        inputField.value = stringifyDates(this.dates, config);
+                        inputField.value = stringifyDates(this.dates, config2);
                       }
                       var picker = this.picker = new Picker(this);
                       if (inline) {
@@ -6708,6 +6714,7 @@
                       Dropdown2.prototype.show = function() {
                         this._targetEl.classList.remove("hidden");
                         this._targetEl.classList.add("block");
+                        this._targetEl.removeAttribute("aria-hidden");
                         this._popperInstance.setOptions(function(options) {
                           return __assign(__assign({}, options), { modifiers: __spreadArray(__spreadArray([], options.modifiers, true), [
                             { name: "eventListeners", enabled: true }
@@ -6721,6 +6728,7 @@
                       Dropdown2.prototype.hide = function() {
                         this._targetEl.classList.remove("block");
                         this._targetEl.classList.add("hidden");
+                        this._targetEl.setAttribute("aria-hidden", "true");
                         this._popperInstance.setOptions(function(options) {
                           return __assign(__assign({}, options), { modifiers: __spreadArray(__spreadArray([], options.modifiers, true), [
                             { name: "eventListeners", enabled: false }
@@ -8221,6 +8229,7 @@
     StreamSourceElement: () => StreamSourceElement,
     cache: () => cache,
     clearCache: () => clearCache,
+    config: () => config,
     connectStreamSource: () => connectStreamSource,
     disconnectStreamSource: () => disconnectStreamSource,
     fetch: () => fetchWithTurboHeaders,
@@ -8239,23 +8248,23 @@
   });
   (function(prototype) {
     if (typeof prototype.requestSubmit == "function") return;
-    prototype.requestSubmit = function(submitter) {
-      if (submitter) {
-        validateSubmitter(submitter, this);
-        submitter.click();
+    prototype.requestSubmit = function(submitter2) {
+      if (submitter2) {
+        validateSubmitter(submitter2, this);
+        submitter2.click();
       } else {
-        submitter = document.createElement("input");
-        submitter.type = "submit";
-        submitter.hidden = true;
-        this.appendChild(submitter);
-        submitter.click();
-        this.removeChild(submitter);
+        submitter2 = document.createElement("input");
+        submitter2.type = "submit";
+        submitter2.hidden = true;
+        this.appendChild(submitter2);
+        submitter2.click();
+        this.removeChild(submitter2);
       }
     };
-    function validateSubmitter(submitter, form) {
-      submitter instanceof HTMLElement || raise(TypeError, "parameter 1 is not of type 'HTMLElement'");
-      submitter.type == "submit" || raise(TypeError, "The specified element is not a submit button");
-      submitter.form == form || raise(DOMException, "The specified element is not owned by this form element", "NotFoundError");
+    function validateSubmitter(submitter2, form) {
+      submitter2 instanceof HTMLElement || raise(TypeError, "parameter 1 is not of type 'HTMLElement'");
+      submitter2.type == "submit" || raise(TypeError, "The specified element is not a submit button");
+      submitter2.form == form || raise(DOMException, "The specified element is not owned by this form element", "NotFoundError");
     }
     function raise(errorConstructor, message, name) {
       throw new errorConstructor("Failed to execute 'requestSubmit' on 'HTMLFormElement': " + message + ".", name);
@@ -8268,9 +8277,9 @@
     return candidate?.type == "submit" ? candidate : null;
   }
   function clickCaptured(event) {
-    const submitter = findSubmitterFromClickTarget(event.target);
-    if (submitter && submitter.form) {
-      submittersByForm.set(submitter.form, submitter);
+    const submitter2 = findSubmitterFromClickTarget(event.target);
+    if (submitter2 && submitter2.form) {
+      submittersByForm.set(submitter2.form, submitter2);
     }
   }
   (function() {
@@ -8356,6 +8365,9 @@
       } else {
         this.removeAttribute("refresh");
       }
+    }
+    get shouldReloadWithMorph() {
+      return this.src && this.refresh === "morph";
     }
     /**
      * Determines if the element is loading
@@ -8444,100 +8456,67 @@
         return FrameLoadingStyle.eager;
     }
   }
-  function expandURL(locatable) {
-    return new URL(locatable.toString(), document.baseURI);
-  }
-  function getAnchor(url) {
-    let anchorMatch;
-    if (url.hash) {
-      return url.hash.slice(1);
-    } else if (anchorMatch = url.href.match(/#(.*)$/)) {
-      return anchorMatch[1];
-    }
-  }
-  function getAction$1(form, submitter) {
-    const action = submitter?.getAttribute("formaction") || form.getAttribute("action") || form.action;
-    return expandURL(action);
-  }
-  function getExtension(url) {
-    return (getLastPathComponent(url).match(/\.[^.]*$/) || [])[0] || "";
-  }
-  function isHTML(url) {
-    return !!getExtension(url).match(/^(?:|\.(?:htm|html|xhtml|php))$/);
-  }
-  function isPrefixedBy(baseURL, url) {
-    const prefix = getPrefix(url);
-    return baseURL.href === expandURL(prefix).href || baseURL.href.startsWith(prefix);
-  }
-  function locationIsVisitable(location2, rootLocation) {
-    return isPrefixedBy(location2, rootLocation) && isHTML(location2);
-  }
-  function getRequestURL(url) {
-    const anchor = getAnchor(url);
-    return anchor != null ? url.href.slice(0, -(anchor.length + 1)) : url.href;
-  }
-  function toCacheKey(url) {
-    return getRequestURL(url);
-  }
-  function urlsAreEqual(left, right) {
-    return expandURL(left).href == expandURL(right).href;
-  }
-  function getPathComponents(url) {
-    return url.pathname.split("/").slice(1);
-  }
-  function getLastPathComponent(url) {
-    return getPathComponents(url).slice(-1)[0];
-  }
-  function getPrefix(url) {
-    return addTrailingSlash(url.origin + url.pathname);
-  }
-  function addTrailingSlash(value) {
-    return value.endsWith("/") ? value : value + "/";
-  }
-  var FetchResponse = class {
-    constructor(response) {
-      this.response = response;
-    }
-    get succeeded() {
-      return this.response.ok;
-    }
-    get failed() {
-      return !this.succeeded;
-    }
-    get clientError() {
-      return this.statusCode >= 400 && this.statusCode <= 499;
-    }
-    get serverError() {
-      return this.statusCode >= 500 && this.statusCode <= 599;
-    }
-    get redirected() {
-      return this.response.redirected;
-    }
-    get location() {
-      return expandURL(this.response.url);
-    }
-    get isHTML() {
-      return this.contentType && this.contentType.match(/^(?:text\/([^\s;,]+\b)?html|application\/xhtml\+xml)\b/);
-    }
-    get statusCode() {
-      return this.response.status;
-    }
-    get contentType() {
-      return this.header("Content-Type");
-    }
-    get responseText() {
-      return this.response.clone().text();
-    }
-    get responseHTML() {
-      if (this.isHTML) {
-        return this.response.clone().text();
-      } else {
-        return Promise.resolve(void 0);
-      }
-    }
-    header(name) {
-      return this.response.headers.get(name);
-    }
+  var drive = {
+    enabled: true,
+    progressBarDelay: 500,
+    unvisitableExtensions: /* @__PURE__ */ new Set(
+      [
+        ".7z",
+        ".aac",
+        ".apk",
+        ".avi",
+        ".bmp",
+        ".bz2",
+        ".css",
+        ".csv",
+        ".deb",
+        ".dmg",
+        ".doc",
+        ".docx",
+        ".exe",
+        ".gif",
+        ".gz",
+        ".heic",
+        ".heif",
+        ".ico",
+        ".iso",
+        ".jpeg",
+        ".jpg",
+        ".js",
+        ".json",
+        ".m4a",
+        ".mkv",
+        ".mov",
+        ".mp3",
+        ".mp4",
+        ".mpeg",
+        ".mpg",
+        ".msi",
+        ".ogg",
+        ".ogv",
+        ".pdf",
+        ".pkg",
+        ".png",
+        ".ppt",
+        ".pptx",
+        ".rar",
+        ".rtf",
+        ".svg",
+        ".tar",
+        ".tif",
+        ".tiff",
+        ".txt",
+        ".wav",
+        ".webm",
+        ".webp",
+        ".wma",
+        ".wmv",
+        ".xls",
+        ".xlsx",
+        ".xml",
+        ".zip"
+      ]
+    )
   };
   function activateScriptElement(element) {
     if (element.getAttribute("data-turbo-eval") == "false") {
@@ -8577,6 +8556,10 @@
       document.documentElement.dispatchEvent(event);
     }
     return event;
+  }
+  function cancelEvent(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
   }
   function nextRepaint() {
     if (document.visibilityState === "hidden") {
@@ -8737,6 +8720,134 @@
       timeoutId = setTimeout(callback, delay);
     };
   }
+  var submitter = {
+    "aria-disabled": {
+      beforeSubmit: (submitter2) => {
+        submitter2.setAttribute("aria-disabled", "true");
+        submitter2.addEventListener("click", cancelEvent);
+      },
+      afterSubmit: (submitter2) => {
+        submitter2.removeAttribute("aria-disabled");
+        submitter2.removeEventListener("click", cancelEvent);
+      }
+    },
+    "disabled": {
+      beforeSubmit: (submitter2) => submitter2.disabled = true,
+      afterSubmit: (submitter2) => submitter2.disabled = false
+    }
+  };
+  var Config = class {
+    #submitter = null;
+    constructor(config2) {
+      Object.assign(this, config2);
+    }
+    get submitter() {
+      return this.#submitter;
+    }
+    set submitter(value) {
+      this.#submitter = submitter[value] || value;
+    }
+  };
+  var forms = new Config({
+    mode: "on",
+    submitter: "disabled"
+  });
+  var config = {
+    drive,
+    forms
+  };
+  function expandURL(locatable) {
+    return new URL(locatable.toString(), document.baseURI);
+  }
+  function getAnchor(url) {
+    let anchorMatch;
+    if (url.hash) {
+      return url.hash.slice(1);
+    } else if (anchorMatch = url.href.match(/#(.*)$/)) {
+      return anchorMatch[1];
+    }
+  }
+  function getAction$1(form, submitter2) {
+    const action = submitter2?.getAttribute("formaction") || form.getAttribute("action") || form.action;
+    return expandURL(action);
+  }
+  function getExtension(url) {
+    return (getLastPathComponent(url).match(/\.[^.]*$/) || [])[0] || "";
+  }
+  function isPrefixedBy(baseURL, url) {
+    const prefix = getPrefix(url);
+    return baseURL.href === expandURL(prefix).href || baseURL.href.startsWith(prefix);
+  }
+  function locationIsVisitable(location2, rootLocation) {
+    return isPrefixedBy(location2, rootLocation) && !config.drive.unvisitableExtensions.has(getExtension(location2));
+  }
+  function getRequestURL(url) {
+    const anchor = getAnchor(url);
+    return anchor != null ? url.href.slice(0, -(anchor.length + 1)) : url.href;
+  }
+  function toCacheKey(url) {
+    return getRequestURL(url);
+  }
+  function urlsAreEqual(left, right) {
+    return expandURL(left).href == expandURL(right).href;
+  }
+  function getPathComponents(url) {
+    return url.pathname.split("/").slice(1);
+  }
+  function getLastPathComponent(url) {
+    return getPathComponents(url).slice(-1)[0];
+  }
+  function getPrefix(url) {
+    return addTrailingSlash(url.origin + url.pathname);
+  }
+  function addTrailingSlash(value) {
+    return value.endsWith("/") ? value : value + "/";
+  }
+  var FetchResponse = class {
+    constructor(response) {
+      this.response = response;
+    }
+    get succeeded() {
+      return this.response.ok;
+    }
+    get failed() {
+      return !this.succeeded;
+    }
+    get clientError() {
+      return this.statusCode >= 400 && this.statusCode <= 499;
+    }
+    get serverError() {
+      return this.statusCode >= 500 && this.statusCode <= 599;
+    }
+    get redirected() {
+      return this.response.redirected;
+    }
+    get location() {
+      return expandURL(this.response.url);
+    }
+    get isHTML() {
+      return this.contentType && this.contentType.match(/^(?:text\/([^\s;,]+\b)?html|application\/xhtml\+xml)\b/);
+    }
+    get statusCode() {
+      return this.response.status;
+    }
+    get contentType() {
+      return this.header("Content-Type");
+    }
+    get responseText() {
+      return this.response.clone().text();
+    }
+    get responseHTML() {
+      if (this.isHTML) {
+        return this.response.clone().text();
+      } else {
+        return Promise.resolve(void 0);
+      }
+    }
+    header(name) {
+      return this.response.headers.get(name);
+    }
+  };
   var LimitedSet = class extends Set {
     constructor(maxSize) {
       super();
@@ -9049,17 +9160,17 @@
   };
   var FormSubmission = class _FormSubmission {
     state = FormSubmissionState.initialized;
-    static confirmMethod(message, _element, _submitter) {
+    static confirmMethod(message) {
       return Promise.resolve(confirm(message));
     }
-    constructor(delegate, formElement, submitter, mustRedirect = false) {
-      const method = getMethod(formElement, submitter);
-      const action = getAction(getFormAction(formElement, submitter), method);
-      const body = buildFormData(formElement, submitter);
-      const enctype = getEnctype(formElement, submitter);
+    constructor(delegate, formElement, submitter2, mustRedirect = false) {
+      const method = getMethod(formElement, submitter2);
+      const action = getAction(getFormAction(formElement, submitter2), method);
+      const body = buildFormData(formElement, submitter2);
+      const enctype = getEnctype(formElement, submitter2);
       this.delegate = delegate;
       this.formElement = formElement;
-      this.submitter = submitter;
+      this.submitter = submitter2;
       this.fetchRequest = new FetchRequest(this, method, action, body, formElement, enctype);
       this.mustRedirect = mustRedirect;
     }
@@ -9092,7 +9203,8 @@
       const { initialized, requesting } = FormSubmissionState;
       const confirmationMessage = getAttribute("data-turbo-confirm", this.submitter, this.formElement);
       if (typeof confirmationMessage === "string") {
-        const answer = await _FormSubmission.confirmMethod(confirmationMessage, this.formElement, this.submitter);
+        const confirmMethod = typeof config.forms.confirm === "function" ? config.forms.confirm : _FormSubmission.confirmMethod;
+        const answer = await confirmMethod(confirmationMessage, this.formElement, this.submitter);
         if (!answer) {
           return;
         }
@@ -9124,7 +9236,7 @@
     }
     requestStarted(_request) {
       this.state = FormSubmissionState.waiting;
-      this.submitter?.setAttribute("disabled", "");
+      if (this.submitter) config.forms.submitter.beforeSubmit(this.submitter);
       this.setSubmitsWith();
       markAsBusy(this.formElement);
       dispatch("turbo:submit-start", {
@@ -9162,7 +9274,7 @@
     }
     requestFinished(_request) {
       this.state = FormSubmissionState.stopped;
-      this.submitter?.removeAttribute("disabled");
+      if (this.submitter) config.forms.submitter.afterSubmit(this.submitter);
       this.resetSubmitterText();
       clearBusyState(this.formElement);
       dispatch("turbo:submit-end", {
@@ -9202,10 +9314,10 @@
       return this.submitter?.getAttribute("data-turbo-submits-with");
     }
   };
-  function buildFormData(formElement, submitter) {
+  function buildFormData(formElement, submitter2) {
     const formData = new FormData(formElement);
-    const name = submitter?.getAttribute("name");
-    const value = submitter?.getAttribute("value");
+    const name = submitter2?.getAttribute("name");
+    const value = submitter2?.getAttribute("value");
     if (name) {
       formData.append(name, value || "");
     }
@@ -9224,10 +9336,10 @@
   function responseSucceededWithoutRedirect(response) {
     return response.statusCode == 200 && !response.redirected;
   }
-  function getFormAction(formElement, submitter) {
+  function getFormAction(formElement, submitter2) {
     const formElementAction = typeof formElement.action === "string" ? formElement.action : null;
-    if (submitter?.hasAttribute("formaction")) {
-      return submitter.getAttribute("formaction") || "";
+    if (submitter2?.hasAttribute("formaction")) {
+      return submitter2.getAttribute("formaction") || "";
     } else {
       return formElement.getAttribute("action") || formElementAction || "";
     }
@@ -9239,12 +9351,12 @@
     }
     return action;
   }
-  function getMethod(formElement, submitter) {
-    const method = submitter?.getAttribute("formmethod") || formElement.getAttribute("method") || "";
+  function getMethod(formElement, submitter2) {
+    const method = submitter2?.getAttribute("formmethod") || formElement.getAttribute("method") || "";
     return fetchMethodFromString(method.toLowerCase()) || FetchMethod.get;
   }
-  function getEnctype(formElement, submitter) {
-    return fetchEnctypeFromString(submitter?.getAttribute("formenctype") || formElement.enctype);
+  function getEnctype(formElement, submitter2) {
+    return fetchEnctypeFromString(submitter2?.getAttribute("formenctype") || formElement.enctype);
   }
   var Snapshot = class {
     constructor(element) {
@@ -9317,21 +9429,21 @@
     submitBubbled = (event) => {
       if (!event.defaultPrevented) {
         const form = event.target instanceof HTMLFormElement ? event.target : void 0;
-        const submitter = event.submitter || void 0;
-        if (form && submissionDoesNotDismissDialog(form, submitter) && submissionDoesNotTargetIFrame(form, submitter) && this.delegate.willSubmitForm(form, submitter)) {
+        const submitter2 = event.submitter || void 0;
+        if (form && submissionDoesNotDismissDialog(form, submitter2) && submissionDoesNotTargetIFrame(form, submitter2) && this.delegate.willSubmitForm(form, submitter2)) {
           event.preventDefault();
           event.stopImmediatePropagation();
-          this.delegate.formSubmitted(form, submitter);
+          this.delegate.formSubmitted(form, submitter2);
         }
       }
     };
   };
-  function submissionDoesNotDismissDialog(form, submitter) {
-    const method = submitter?.getAttribute("formmethod") || form.getAttribute("method");
+  function submissionDoesNotDismissDialog(form, submitter2) {
+    const method = submitter2?.getAttribute("formmethod") || form.getAttribute("method");
     return method != "dialog";
   }
-  function submissionDoesNotTargetIFrame(form, submitter) {
-    const target = submitter?.getAttribute("formtarget") || form.getAttribute("target");
+  function submissionDoesNotTargetIFrame(form, submitter2) {
+    const target = submitter2?.getAttribute("formtarget") || form.getAttribute("target");
     return doesNotTargetIFrame(target);
   }
   var View = class {
@@ -9621,12 +9733,14 @@
   }
   var Renderer = class {
     #activeElement = null;
-    constructor(currentSnapshot, newSnapshot, renderElement, isPreview, willRender = true) {
+    static renderElement(currentElement, newElement) {
+    }
+    constructor(currentSnapshot, newSnapshot, isPreview, willRender = true) {
       this.currentSnapshot = currentSnapshot;
       this.newSnapshot = newSnapshot;
       this.isPreview = isPreview;
       this.willRender = willRender;
-      this.renderElement = renderElement;
+      this.renderElement = this.constructor.renderElement;
       this.promise = new Promise((resolve, reject) => this.resolvingFunctions = { resolve, reject });
     }
     get shouldRender() {
@@ -9759,6 +9873,609 @@
       return defaultValue;
     }
   }
+  var Idiomorph = /* @__PURE__ */ function() {
+    let EMPTY_SET = /* @__PURE__ */ new Set();
+    let defaults = {
+      morphStyle: "outerHTML",
+      callbacks: {
+        beforeNodeAdded: noOp,
+        afterNodeAdded: noOp,
+        beforeNodeMorphed: noOp,
+        afterNodeMorphed: noOp,
+        beforeNodeRemoved: noOp,
+        afterNodeRemoved: noOp,
+        beforeAttributeUpdated: noOp
+      },
+      head: {
+        style: "merge",
+        shouldPreserve: function(elt) {
+          return elt.getAttribute("im-preserve") === "true";
+        },
+        shouldReAppend: function(elt) {
+          return elt.getAttribute("im-re-append") === "true";
+        },
+        shouldRemove: noOp,
+        afterHeadMorphed: noOp
+      }
+    };
+    function morph(oldNode, newContent, config2 = {}) {
+      if (oldNode instanceof Document) {
+        oldNode = oldNode.documentElement;
+      }
+      if (typeof newContent === "string") {
+        newContent = parseContent(newContent);
+      }
+      let normalizedContent = normalizeContent(newContent);
+      let ctx = createMorphContext(oldNode, normalizedContent, config2);
+      return morphNormalizedContent(oldNode, normalizedContent, ctx);
+    }
+    function morphNormalizedContent(oldNode, normalizedNewContent, ctx) {
+      if (ctx.head.block) {
+        let oldHead = oldNode.querySelector("head");
+        let newHead = normalizedNewContent.querySelector("head");
+        if (oldHead && newHead) {
+          let promises = handleHeadElement(newHead, oldHead, ctx);
+          Promise.all(promises).then(function() {
+            morphNormalizedContent(oldNode, normalizedNewContent, Object.assign(ctx, {
+              head: {
+                block: false,
+                ignore: true
+              }
+            }));
+          });
+          return;
+        }
+      }
+      if (ctx.morphStyle === "innerHTML") {
+        morphChildren2(normalizedNewContent, oldNode, ctx);
+        return oldNode.children;
+      } else if (ctx.morphStyle === "outerHTML" || ctx.morphStyle == null) {
+        let bestMatch = findBestNodeMatch(normalizedNewContent, oldNode, ctx);
+        let previousSibling = bestMatch?.previousSibling;
+        let nextSibling = bestMatch?.nextSibling;
+        let morphedNode = morphOldNodeTo(oldNode, bestMatch, ctx);
+        if (bestMatch) {
+          return insertSiblings(previousSibling, morphedNode, nextSibling);
+        } else {
+          return [];
+        }
+      } else {
+        throw "Do not understand how to morph style " + ctx.morphStyle;
+      }
+    }
+    function ignoreValueOfActiveElement(possibleActiveElement, ctx) {
+      return ctx.ignoreActiveValue && possibleActiveElement === document.activeElement && possibleActiveElement !== document.body;
+    }
+    function morphOldNodeTo(oldNode, newContent, ctx) {
+      if (ctx.ignoreActive && oldNode === document.activeElement) ;
+      else if (newContent == null) {
+        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false) return oldNode;
+        oldNode.remove();
+        ctx.callbacks.afterNodeRemoved(oldNode);
+        return null;
+      } else if (!isSoftMatch(oldNode, newContent)) {
+        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false) return oldNode;
+        if (ctx.callbacks.beforeNodeAdded(newContent) === false) return oldNode;
+        oldNode.parentElement.replaceChild(newContent, oldNode);
+        ctx.callbacks.afterNodeAdded(newContent);
+        ctx.callbacks.afterNodeRemoved(oldNode);
+        return newContent;
+      } else {
+        if (ctx.callbacks.beforeNodeMorphed(oldNode, newContent) === false) return oldNode;
+        if (oldNode instanceof HTMLHeadElement && ctx.head.ignore) ;
+        else if (oldNode instanceof HTMLHeadElement && ctx.head.style !== "morph") {
+          handleHeadElement(newContent, oldNode, ctx);
+        } else {
+          syncNodeFrom(newContent, oldNode, ctx);
+          if (!ignoreValueOfActiveElement(oldNode, ctx)) {
+            morphChildren2(newContent, oldNode, ctx);
+          }
+        }
+        ctx.callbacks.afterNodeMorphed(oldNode, newContent);
+        return oldNode;
+      }
+    }
+    function morphChildren2(newParent, oldParent, ctx) {
+      let nextNewChild = newParent.firstChild;
+      let insertionPoint = oldParent.firstChild;
+      let newChild;
+      while (nextNewChild) {
+        newChild = nextNewChild;
+        nextNewChild = newChild.nextSibling;
+        if (insertionPoint == null) {
+          if (ctx.callbacks.beforeNodeAdded(newChild) === false) return;
+          oldParent.appendChild(newChild);
+          ctx.callbacks.afterNodeAdded(newChild);
+          removeIdsFromConsideration(ctx, newChild);
+          continue;
+        }
+        if (isIdSetMatch(newChild, insertionPoint, ctx)) {
+          morphOldNodeTo(insertionPoint, newChild, ctx);
+          insertionPoint = insertionPoint.nextSibling;
+          removeIdsFromConsideration(ctx, newChild);
+          continue;
+        }
+        let idSetMatch = findIdSetMatch(newParent, oldParent, newChild, insertionPoint, ctx);
+        if (idSetMatch) {
+          insertionPoint = removeNodesBetween(insertionPoint, idSetMatch, ctx);
+          morphOldNodeTo(idSetMatch, newChild, ctx);
+          removeIdsFromConsideration(ctx, newChild);
+          continue;
+        }
+        let softMatch = findSoftMatch(newParent, oldParent, newChild, insertionPoint, ctx);
+        if (softMatch) {
+          insertionPoint = removeNodesBetween(insertionPoint, softMatch, ctx);
+          morphOldNodeTo(softMatch, newChild, ctx);
+          removeIdsFromConsideration(ctx, newChild);
+          continue;
+        }
+        if (ctx.callbacks.beforeNodeAdded(newChild) === false) return;
+        oldParent.insertBefore(newChild, insertionPoint);
+        ctx.callbacks.afterNodeAdded(newChild);
+        removeIdsFromConsideration(ctx, newChild);
+      }
+      while (insertionPoint !== null) {
+        let tempNode = insertionPoint;
+        insertionPoint = insertionPoint.nextSibling;
+        removeNode(tempNode, ctx);
+      }
+    }
+    function ignoreAttribute(attr, to, updateType, ctx) {
+      if (attr === "value" && ctx.ignoreActiveValue && to === document.activeElement) {
+        return true;
+      }
+      return ctx.callbacks.beforeAttributeUpdated(attr, to, updateType) === false;
+    }
+    function syncNodeFrom(from, to, ctx) {
+      let type = from.nodeType;
+      if (type === 1) {
+        const fromAttributes = from.attributes;
+        const toAttributes = to.attributes;
+        for (const fromAttribute of fromAttributes) {
+          if (ignoreAttribute(fromAttribute.name, to, "update", ctx)) {
+            continue;
+          }
+          if (to.getAttribute(fromAttribute.name) !== fromAttribute.value) {
+            to.setAttribute(fromAttribute.name, fromAttribute.value);
+          }
+        }
+        for (let i = toAttributes.length - 1; 0 <= i; i--) {
+          const toAttribute = toAttributes[i];
+          if (ignoreAttribute(toAttribute.name, to, "remove", ctx)) {
+            continue;
+          }
+          if (!from.hasAttribute(toAttribute.name)) {
+            to.removeAttribute(toAttribute.name);
+          }
+        }
+      }
+      if (type === 8 || type === 3) {
+        if (to.nodeValue !== from.nodeValue) {
+          to.nodeValue = from.nodeValue;
+        }
+      }
+      if (!ignoreValueOfActiveElement(to, ctx)) {
+        syncInputValue(from, to, ctx);
+      }
+    }
+    function syncBooleanAttribute(from, to, attributeName, ctx) {
+      if (from[attributeName] !== to[attributeName]) {
+        let ignoreUpdate = ignoreAttribute(attributeName, to, "update", ctx);
+        if (!ignoreUpdate) {
+          to[attributeName] = from[attributeName];
+        }
+        if (from[attributeName]) {
+          if (!ignoreUpdate) {
+            to.setAttribute(attributeName, from[attributeName]);
+          }
+        } else {
+          if (!ignoreAttribute(attributeName, to, "remove", ctx)) {
+            to.removeAttribute(attributeName);
+          }
+        }
+      }
+    }
+    function syncInputValue(from, to, ctx) {
+      if (from instanceof HTMLInputElement && to instanceof HTMLInputElement && from.type !== "file") {
+        let fromValue = from.value;
+        let toValue = to.value;
+        syncBooleanAttribute(from, to, "checked", ctx);
+        syncBooleanAttribute(from, to, "disabled", ctx);
+        if (!from.hasAttribute("value")) {
+          if (!ignoreAttribute("value", to, "remove", ctx)) {
+            to.value = "";
+            to.removeAttribute("value");
+          }
+        } else if (fromValue !== toValue) {
+          if (!ignoreAttribute("value", to, "update", ctx)) {
+            to.setAttribute("value", fromValue);
+            to.value = fromValue;
+          }
+        }
+      } else if (from instanceof HTMLOptionElement) {
+        syncBooleanAttribute(from, to, "selected", ctx);
+      } else if (from instanceof HTMLTextAreaElement && to instanceof HTMLTextAreaElement) {
+        let fromValue = from.value;
+        let toValue = to.value;
+        if (ignoreAttribute("value", to, "update", ctx)) {
+          return;
+        }
+        if (fromValue !== toValue) {
+          to.value = fromValue;
+        }
+        if (to.firstChild && to.firstChild.nodeValue !== fromValue) {
+          to.firstChild.nodeValue = fromValue;
+        }
+      }
+    }
+    function handleHeadElement(newHeadTag, currentHead, ctx) {
+      let added = [];
+      let removed = [];
+      let preserved = [];
+      let nodesToAppend = [];
+      let headMergeStyle = ctx.head.style;
+      let srcToNewHeadNodes = /* @__PURE__ */ new Map();
+      for (const newHeadChild of newHeadTag.children) {
+        srcToNewHeadNodes.set(newHeadChild.outerHTML, newHeadChild);
+      }
+      for (const currentHeadElt of currentHead.children) {
+        let inNewContent = srcToNewHeadNodes.has(currentHeadElt.outerHTML);
+        let isReAppended = ctx.head.shouldReAppend(currentHeadElt);
+        let isPreserved = ctx.head.shouldPreserve(currentHeadElt);
+        if (inNewContent || isPreserved) {
+          if (isReAppended) {
+            removed.push(currentHeadElt);
+          } else {
+            srcToNewHeadNodes.delete(currentHeadElt.outerHTML);
+            preserved.push(currentHeadElt);
+          }
+        } else {
+          if (headMergeStyle === "append") {
+            if (isReAppended) {
+              removed.push(currentHeadElt);
+              nodesToAppend.push(currentHeadElt);
+            }
+          } else {
+            if (ctx.head.shouldRemove(currentHeadElt) !== false) {
+              removed.push(currentHeadElt);
+            }
+          }
+        }
+      }
+      nodesToAppend.push(...srcToNewHeadNodes.values());
+      let promises = [];
+      for (const newNode of nodesToAppend) {
+        let newElt = document.createRange().createContextualFragment(newNode.outerHTML).firstChild;
+        if (ctx.callbacks.beforeNodeAdded(newElt) !== false) {
+          if (newElt.href || newElt.src) {
+            let resolve = null;
+            let promise = new Promise(function(_resolve) {
+              resolve = _resolve;
+            });
+            newElt.addEventListener("load", function() {
+              resolve();
+            });
+            promises.push(promise);
+          }
+          currentHead.appendChild(newElt);
+          ctx.callbacks.afterNodeAdded(newElt);
+          added.push(newElt);
+        }
+      }
+      for (const removedElement of removed) {
+        if (ctx.callbacks.beforeNodeRemoved(removedElement) !== false) {
+          currentHead.removeChild(removedElement);
+          ctx.callbacks.afterNodeRemoved(removedElement);
+        }
+      }
+      ctx.head.afterHeadMorphed(currentHead, { added, kept: preserved, removed });
+      return promises;
+    }
+    function noOp() {
+    }
+    function mergeDefaults(config2) {
+      let finalConfig = {};
+      Object.assign(finalConfig, defaults);
+      Object.assign(finalConfig, config2);
+      finalConfig.callbacks = {};
+      Object.assign(finalConfig.callbacks, defaults.callbacks);
+      Object.assign(finalConfig.callbacks, config2.callbacks);
+      finalConfig.head = {};
+      Object.assign(finalConfig.head, defaults.head);
+      Object.assign(finalConfig.head, config2.head);
+      return finalConfig;
+    }
+    function createMorphContext(oldNode, newContent, config2) {
+      config2 = mergeDefaults(config2);
+      return {
+        target: oldNode,
+        newContent,
+        config: config2,
+        morphStyle: config2.morphStyle,
+        ignoreActive: config2.ignoreActive,
+        ignoreActiveValue: config2.ignoreActiveValue,
+        idMap: createIdMap(oldNode, newContent),
+        deadIds: /* @__PURE__ */ new Set(),
+        callbacks: config2.callbacks,
+        head: config2.head
+      };
+    }
+    function isIdSetMatch(node1, node2, ctx) {
+      if (node1 == null || node2 == null) {
+        return false;
+      }
+      if (node1.nodeType === node2.nodeType && node1.tagName === node2.tagName) {
+        if (node1.id !== "" && node1.id === node2.id) {
+          return true;
+        } else {
+          return getIdIntersectionCount(ctx, node1, node2) > 0;
+        }
+      }
+      return false;
+    }
+    function isSoftMatch(node1, node2) {
+      if (node1 == null || node2 == null) {
+        return false;
+      }
+      return node1.nodeType === node2.nodeType && node1.tagName === node2.tagName;
+    }
+    function removeNodesBetween(startInclusive, endExclusive, ctx) {
+      while (startInclusive !== endExclusive) {
+        let tempNode = startInclusive;
+        startInclusive = startInclusive.nextSibling;
+        removeNode(tempNode, ctx);
+      }
+      removeIdsFromConsideration(ctx, endExclusive);
+      return endExclusive.nextSibling;
+    }
+    function findIdSetMatch(newContent, oldParent, newChild, insertionPoint, ctx) {
+      let newChildPotentialIdCount = getIdIntersectionCount(ctx, newChild, oldParent);
+      let potentialMatch = null;
+      if (newChildPotentialIdCount > 0) {
+        let potentialMatch2 = insertionPoint;
+        let otherMatchCount = 0;
+        while (potentialMatch2 != null) {
+          if (isIdSetMatch(newChild, potentialMatch2, ctx)) {
+            return potentialMatch2;
+          }
+          otherMatchCount += getIdIntersectionCount(ctx, potentialMatch2, newContent);
+          if (otherMatchCount > newChildPotentialIdCount) {
+            return null;
+          }
+          potentialMatch2 = potentialMatch2.nextSibling;
+        }
+      }
+      return potentialMatch;
+    }
+    function findSoftMatch(newContent, oldParent, newChild, insertionPoint, ctx) {
+      let potentialSoftMatch = insertionPoint;
+      let nextSibling = newChild.nextSibling;
+      let siblingSoftMatchCount = 0;
+      while (potentialSoftMatch != null) {
+        if (getIdIntersectionCount(ctx, potentialSoftMatch, newContent) > 0) {
+          return null;
+        }
+        if (isSoftMatch(newChild, potentialSoftMatch)) {
+          return potentialSoftMatch;
+        }
+        if (isSoftMatch(nextSibling, potentialSoftMatch)) {
+          siblingSoftMatchCount++;
+          nextSibling = nextSibling.nextSibling;
+          if (siblingSoftMatchCount >= 2) {
+            return null;
+          }
+        }
+        potentialSoftMatch = potentialSoftMatch.nextSibling;
+      }
+      return potentialSoftMatch;
+    }
+    function parseContent(newContent) {
+      let parser = new DOMParser();
+      let contentWithSvgsRemoved = newContent.replace(/<svg(\s[^>]*>|>)([\s\S]*?)<\/svg>/gim, "");
+      if (contentWithSvgsRemoved.match(/<\/html>/) || contentWithSvgsRemoved.match(/<\/head>/) || contentWithSvgsRemoved.match(/<\/body>/)) {
+        let content = parser.parseFromString(newContent, "text/html");
+        if (contentWithSvgsRemoved.match(/<\/html>/)) {
+          content.generatedByIdiomorph = true;
+          return content;
+        } else {
+          let htmlElement = content.firstChild;
+          if (htmlElement) {
+            htmlElement.generatedByIdiomorph = true;
+            return htmlElement;
+          } else {
+            return null;
+          }
+        }
+      } else {
+        let responseDoc = parser.parseFromString("<body><template>" + newContent + "</template></body>", "text/html");
+        let content = responseDoc.body.querySelector("template").content;
+        content.generatedByIdiomorph = true;
+        return content;
+      }
+    }
+    function normalizeContent(newContent) {
+      if (newContent == null) {
+        const dummyParent = document.createElement("div");
+        return dummyParent;
+      } else if (newContent.generatedByIdiomorph) {
+        return newContent;
+      } else if (newContent instanceof Node) {
+        const dummyParent = document.createElement("div");
+        dummyParent.append(newContent);
+        return dummyParent;
+      } else {
+        const dummyParent = document.createElement("div");
+        for (const elt of [...newContent]) {
+          dummyParent.append(elt);
+        }
+        return dummyParent;
+      }
+    }
+    function insertSiblings(previousSibling, morphedNode, nextSibling) {
+      let stack = [];
+      let added = [];
+      while (previousSibling != null) {
+        stack.push(previousSibling);
+        previousSibling = previousSibling.previousSibling;
+      }
+      while (stack.length > 0) {
+        let node = stack.pop();
+        added.push(node);
+        morphedNode.parentElement.insertBefore(node, morphedNode);
+      }
+      added.push(morphedNode);
+      while (nextSibling != null) {
+        stack.push(nextSibling);
+        added.push(nextSibling);
+        nextSibling = nextSibling.nextSibling;
+      }
+      while (stack.length > 0) {
+        morphedNode.parentElement.insertBefore(stack.pop(), morphedNode.nextSibling);
+      }
+      return added;
+    }
+    function findBestNodeMatch(newContent, oldNode, ctx) {
+      let currentElement;
+      currentElement = newContent.firstChild;
+      let bestElement = currentElement;
+      let score = 0;
+      while (currentElement) {
+        let newScore = scoreElement(currentElement, oldNode, ctx);
+        if (newScore > score) {
+          bestElement = currentElement;
+          score = newScore;
+        }
+        currentElement = currentElement.nextSibling;
+      }
+      return bestElement;
+    }
+    function scoreElement(node1, node2, ctx) {
+      if (isSoftMatch(node1, node2)) {
+        return 0.5 + getIdIntersectionCount(ctx, node1, node2);
+      }
+      return 0;
+    }
+    function removeNode(tempNode, ctx) {
+      removeIdsFromConsideration(ctx, tempNode);
+      if (ctx.callbacks.beforeNodeRemoved(tempNode) === false) return;
+      tempNode.remove();
+      ctx.callbacks.afterNodeRemoved(tempNode);
+    }
+    function isIdInConsideration(ctx, id) {
+      return !ctx.deadIds.has(id);
+    }
+    function idIsWithinNode(ctx, id, targetNode) {
+      let idSet = ctx.idMap.get(targetNode) || EMPTY_SET;
+      return idSet.has(id);
+    }
+    function removeIdsFromConsideration(ctx, node) {
+      let idSet = ctx.idMap.get(node) || EMPTY_SET;
+      for (const id of idSet) {
+        ctx.deadIds.add(id);
+      }
+    }
+    function getIdIntersectionCount(ctx, node1, node2) {
+      let sourceSet = ctx.idMap.get(node1) || EMPTY_SET;
+      let matchCount = 0;
+      for (const id of sourceSet) {
+        if (isIdInConsideration(ctx, id) && idIsWithinNode(ctx, id, node2)) {
+          ++matchCount;
+        }
+      }
+      return matchCount;
+    }
+    function populateIdMapForNode(node, idMap) {
+      let nodeParent = node.parentElement;
+      let idElements = node.querySelectorAll("[id]");
+      for (const elt of idElements) {
+        let current = elt;
+        while (current !== nodeParent && current != null) {
+          let idSet = idMap.get(current);
+          if (idSet == null) {
+            idSet = /* @__PURE__ */ new Set();
+            idMap.set(current, idSet);
+          }
+          idSet.add(elt.id);
+          current = current.parentElement;
+        }
+      }
+    }
+    function createIdMap(oldContent, newContent) {
+      let idMap = /* @__PURE__ */ new Map();
+      populateIdMapForNode(oldContent, idMap);
+      populateIdMapForNode(newContent, idMap);
+      return idMap;
+    }
+    return {
+      morph,
+      defaults
+    };
+  }();
+  function morphElements(currentElement, newElement, { callbacks, ...options } = {}) {
+    Idiomorph.morph(currentElement, newElement, {
+      ...options,
+      callbacks: new DefaultIdiomorphCallbacks(callbacks)
+    });
+  }
+  function morphChildren(currentElement, newElement) {
+    morphElements(currentElement, newElement.children, {
+      morphStyle: "innerHTML"
+    });
+  }
+  var DefaultIdiomorphCallbacks = class {
+    #beforeNodeMorphed;
+    constructor({ beforeNodeMorphed } = {}) {
+      this.#beforeNodeMorphed = beforeNodeMorphed || (() => true);
+    }
+    beforeNodeAdded = (node) => {
+      return !(node.id && node.hasAttribute("data-turbo-permanent") && document.getElementById(node.id));
+    };
+    beforeNodeMorphed = (currentElement, newElement) => {
+      if (currentElement instanceof Element) {
+        if (!currentElement.hasAttribute("data-turbo-permanent") && this.#beforeNodeMorphed(currentElement, newElement)) {
+          const event = dispatch("turbo:before-morph-element", {
+            cancelable: true,
+            target: currentElement,
+            detail: { currentElement, newElement }
+          });
+          return !event.defaultPrevented;
+        } else {
+          return false;
+        }
+      }
+    };
+    beforeAttributeUpdated = (attributeName, target, mutationType) => {
+      const event = dispatch("turbo:before-morph-attribute", {
+        cancelable: true,
+        target,
+        detail: { attributeName, mutationType }
+      });
+      return !event.defaultPrevented;
+    };
+    beforeNodeRemoved = (node) => {
+      return this.beforeNodeMorphed(node);
+    };
+    afterNodeMorphed = (currentElement, newElement) => {
+      if (currentElement instanceof Element) {
+        dispatch("turbo:morph-element", {
+          target: currentElement,
+          detail: { currentElement, newElement }
+        });
+      }
+    };
+  };
+  var MorphingFrameRenderer = class extends FrameRenderer {
+    static renderElement(currentElement, newElement) {
+      dispatch("turbo:before-frame-morph", {
+        target: currentElement,
+        detail: { currentElement, newElement }
+      });
+      morphChildren(currentElement, newElement);
+    }
+    async preservingPermanentElements(callback) {
+      return await callback();
+    }
+  };
   var ProgressBar = class _ProgressBar {
     static animationDuration = 300;
     /*ms*/
@@ -10391,7 +11108,9 @@
     }
     async render(callback) {
       this.cancelRender();
-      this.frame = await nextRepaint();
+      await new Promise((resolve) => {
+        this.frame = document.visibilityState === "hidden" ? setTimeout(() => resolve(), 0) : requestAnimationFrame(() => resolve());
+      });
       await callback();
       delete this.frame;
     }
@@ -10573,32 +11292,32 @@
       }
     }
     // Form submit observer delegate
-    willSubmitForm(element, submitter) {
-      return element.closest("turbo-frame") == null && this.#shouldSubmit(element, submitter) && this.#shouldRedirect(element, submitter);
+    willSubmitForm(element, submitter2) {
+      return element.closest("turbo-frame") == null && this.#shouldSubmit(element, submitter2) && this.#shouldRedirect(element, submitter2);
     }
-    formSubmitted(element, submitter) {
-      const frame = this.#findFrameElement(element, submitter);
+    formSubmitted(element, submitter2) {
+      const frame = this.#findFrameElement(element, submitter2);
       if (frame) {
-        frame.delegate.formSubmitted(element, submitter);
+        frame.delegate.formSubmitted(element, submitter2);
       }
     }
-    #shouldSubmit(form, submitter) {
-      const action = getAction$1(form, submitter);
+    #shouldSubmit(form, submitter2) {
+      const action = getAction$1(form, submitter2);
       const meta = this.element.ownerDocument.querySelector(`meta[name="turbo-root"]`);
       const rootLocation = expandURL(meta?.content ?? "/");
-      return this.#shouldRedirect(form, submitter) && locationIsVisitable(action, rootLocation);
+      return this.#shouldRedirect(form, submitter2) && locationIsVisitable(action, rootLocation);
     }
-    #shouldRedirect(element, submitter) {
-      const isNavigatable = element instanceof HTMLFormElement ? this.session.submissionIsNavigatable(element, submitter) : this.session.elementIsNavigatable(element);
+    #shouldRedirect(element, submitter2) {
+      const isNavigatable = element instanceof HTMLFormElement ? this.session.submissionIsNavigatable(element, submitter2) : this.session.elementIsNavigatable(element);
       if (isNavigatable) {
-        const frame = this.#findFrameElement(element, submitter);
+        const frame = this.#findFrameElement(element, submitter2);
         return frame ? frame != element.closest("turbo-frame") : false;
       } else {
         return false;
       }
     }
-    #findFrameElement(element, submitter) {
-      const id = submitter?.getAttribute("data-turbo-frame") || element.getAttribute("data-turbo-frame");
+    #findFrameElement(element, submitter2) {
+      const id = submitter2?.getAttribute("data-turbo-frame") || element.getAttribute("data-turbo-frame");
       if (id && id != "_top") {
         const frame = this.element.querySelector(`#${id}:not([disabled])`);
         if (frame instanceof FrameElement) {
@@ -10854,9 +11573,9 @@
       });
       this.currentVisit.start();
     }
-    submitForm(form, submitter) {
+    submitForm(form, submitter2) {
       this.stop();
-      this.formSubmission = new FormSubmission(this, form, submitter, true);
+      this.formSubmission = new FormSubmission(this, form, submitter2, true);
       this.formSubmission.start();
     }
     stop() {
@@ -10954,8 +11673,8 @@
       return this.history.restorationIdentifier;
     }
     #getActionForFormSubmission(formSubmission, fetchResponse) {
-      const { submitter, formElement } = formSubmission;
-      return getVisitAction(submitter, formElement) || this.#getDefaultAction(fetchResponse);
+      const { submitter: submitter2, formElement } = formSubmission;
+      return getVisitAction(submitter2, formElement) || this.#getDefaultAction(fetchResponse);
     }
     #getDefaultAction(fetchResponse) {
       const sameLocationRedirect = fetchResponse.redirected && fetchResponse.location.href === this.location?.href;
@@ -11214,606 +11933,6 @@
       return document.documentElement.querySelectorAll("script");
     }
   };
-  var Idiomorph = /* @__PURE__ */ function() {
-    let EMPTY_SET = /* @__PURE__ */ new Set();
-    let defaults = {
-      morphStyle: "outerHTML",
-      callbacks: {
-        beforeNodeAdded: noOp,
-        afterNodeAdded: noOp,
-        beforeNodeMorphed: noOp,
-        afterNodeMorphed: noOp,
-        beforeNodeRemoved: noOp,
-        afterNodeRemoved: noOp,
-        beforeAttributeUpdated: noOp
-      },
-      head: {
-        style: "merge",
-        shouldPreserve: function(elt) {
-          return elt.getAttribute("im-preserve") === "true";
-        },
-        shouldReAppend: function(elt) {
-          return elt.getAttribute("im-re-append") === "true";
-        },
-        shouldRemove: noOp,
-        afterHeadMorphed: noOp
-      }
-    };
-    function morph(oldNode, newContent, config = {}) {
-      if (oldNode instanceof Document) {
-        oldNode = oldNode.documentElement;
-      }
-      if (typeof newContent === "string") {
-        newContent = parseContent(newContent);
-      }
-      let normalizedContent = normalizeContent(newContent);
-      let ctx = createMorphContext(oldNode, normalizedContent, config);
-      return morphNormalizedContent(oldNode, normalizedContent, ctx);
-    }
-    function morphNormalizedContent(oldNode, normalizedNewContent, ctx) {
-      if (ctx.head.block) {
-        let oldHead = oldNode.querySelector("head");
-        let newHead = normalizedNewContent.querySelector("head");
-        if (oldHead && newHead) {
-          let promises = handleHeadElement(newHead, oldHead, ctx);
-          Promise.all(promises).then(function() {
-            morphNormalizedContent(oldNode, normalizedNewContent, Object.assign(ctx, {
-              head: {
-                block: false,
-                ignore: true
-              }
-            }));
-          });
-          return;
-        }
-      }
-      if (ctx.morphStyle === "innerHTML") {
-        morphChildren2(normalizedNewContent, oldNode, ctx);
-        return oldNode.children;
-      } else if (ctx.morphStyle === "outerHTML" || ctx.morphStyle == null) {
-        let bestMatch = findBestNodeMatch(normalizedNewContent, oldNode, ctx);
-        let previousSibling = bestMatch?.previousSibling;
-        let nextSibling = bestMatch?.nextSibling;
-        let morphedNode = morphOldNodeTo(oldNode, bestMatch, ctx);
-        if (bestMatch) {
-          return insertSiblings(previousSibling, morphedNode, nextSibling);
-        } else {
-          return [];
-        }
-      } else {
-        throw "Do not understand how to morph style " + ctx.morphStyle;
-      }
-    }
-    function ignoreValueOfActiveElement(possibleActiveElement, ctx) {
-      return ctx.ignoreActiveValue && possibleActiveElement === document.activeElement && possibleActiveElement !== document.body;
-    }
-    function morphOldNodeTo(oldNode, newContent, ctx) {
-      if (ctx.ignoreActive && oldNode === document.activeElement) ;
-      else if (newContent == null) {
-        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false) return oldNode;
-        oldNode.remove();
-        ctx.callbacks.afterNodeRemoved(oldNode);
-        return null;
-      } else if (!isSoftMatch(oldNode, newContent)) {
-        if (ctx.callbacks.beforeNodeRemoved(oldNode) === false) return oldNode;
-        if (ctx.callbacks.beforeNodeAdded(newContent) === false) return oldNode;
-        oldNode.parentElement.replaceChild(newContent, oldNode);
-        ctx.callbacks.afterNodeAdded(newContent);
-        ctx.callbacks.afterNodeRemoved(oldNode);
-        return newContent;
-      } else {
-        if (ctx.callbacks.beforeNodeMorphed(oldNode, newContent) === false) return oldNode;
-        if (oldNode instanceof HTMLHeadElement && ctx.head.ignore) ;
-        else if (oldNode instanceof HTMLHeadElement && ctx.head.style !== "morph") {
-          handleHeadElement(newContent, oldNode, ctx);
-        } else {
-          syncNodeFrom(newContent, oldNode, ctx);
-          if (!ignoreValueOfActiveElement(oldNode, ctx)) {
-            morphChildren2(newContent, oldNode, ctx);
-          }
-        }
-        ctx.callbacks.afterNodeMorphed(oldNode, newContent);
-        return oldNode;
-      }
-    }
-    function morphChildren2(newParent, oldParent, ctx) {
-      let nextNewChild = newParent.firstChild;
-      let insertionPoint = oldParent.firstChild;
-      let newChild;
-      while (nextNewChild) {
-        newChild = nextNewChild;
-        nextNewChild = newChild.nextSibling;
-        if (insertionPoint == null) {
-          if (ctx.callbacks.beforeNodeAdded(newChild) === false) return;
-          oldParent.appendChild(newChild);
-          ctx.callbacks.afterNodeAdded(newChild);
-          removeIdsFromConsideration(ctx, newChild);
-          continue;
-        }
-        if (isIdSetMatch(newChild, insertionPoint, ctx)) {
-          morphOldNodeTo(insertionPoint, newChild, ctx);
-          insertionPoint = insertionPoint.nextSibling;
-          removeIdsFromConsideration(ctx, newChild);
-          continue;
-        }
-        let idSetMatch = findIdSetMatch(newParent, oldParent, newChild, insertionPoint, ctx);
-        if (idSetMatch) {
-          insertionPoint = removeNodesBetween(insertionPoint, idSetMatch, ctx);
-          morphOldNodeTo(idSetMatch, newChild, ctx);
-          removeIdsFromConsideration(ctx, newChild);
-          continue;
-        }
-        let softMatch = findSoftMatch(newParent, oldParent, newChild, insertionPoint, ctx);
-        if (softMatch) {
-          insertionPoint = removeNodesBetween(insertionPoint, softMatch, ctx);
-          morphOldNodeTo(softMatch, newChild, ctx);
-          removeIdsFromConsideration(ctx, newChild);
-          continue;
-        }
-        if (ctx.callbacks.beforeNodeAdded(newChild) === false) return;
-        oldParent.insertBefore(newChild, insertionPoint);
-        ctx.callbacks.afterNodeAdded(newChild);
-        removeIdsFromConsideration(ctx, newChild);
-      }
-      while (insertionPoint !== null) {
-        let tempNode = insertionPoint;
-        insertionPoint = insertionPoint.nextSibling;
-        removeNode(tempNode, ctx);
-      }
-    }
-    function ignoreAttribute(attr, to, updateType, ctx) {
-      if (attr === "value" && ctx.ignoreActiveValue && to === document.activeElement) {
-        return true;
-      }
-      return ctx.callbacks.beforeAttributeUpdated(attr, to, updateType) === false;
-    }
-    function syncNodeFrom(from, to, ctx) {
-      let type = from.nodeType;
-      if (type === 1) {
-        const fromAttributes = from.attributes;
-        const toAttributes = to.attributes;
-        for (const fromAttribute of fromAttributes) {
-          if (ignoreAttribute(fromAttribute.name, to, "update", ctx)) {
-            continue;
-          }
-          if (to.getAttribute(fromAttribute.name) !== fromAttribute.value) {
-            to.setAttribute(fromAttribute.name, fromAttribute.value);
-          }
-        }
-        for (let i = toAttributes.length - 1; 0 <= i; i--) {
-          const toAttribute = toAttributes[i];
-          if (ignoreAttribute(toAttribute.name, to, "remove", ctx)) {
-            continue;
-          }
-          if (!from.hasAttribute(toAttribute.name)) {
-            to.removeAttribute(toAttribute.name);
-          }
-        }
-      }
-      if (type === 8 || type === 3) {
-        if (to.nodeValue !== from.nodeValue) {
-          to.nodeValue = from.nodeValue;
-        }
-      }
-      if (!ignoreValueOfActiveElement(to, ctx)) {
-        syncInputValue(from, to, ctx);
-      }
-    }
-    function syncBooleanAttribute(from, to, attributeName, ctx) {
-      if (from[attributeName] !== to[attributeName]) {
-        let ignoreUpdate = ignoreAttribute(attributeName, to, "update", ctx);
-        if (!ignoreUpdate) {
-          to[attributeName] = from[attributeName];
-        }
-        if (from[attributeName]) {
-          if (!ignoreUpdate) {
-            to.setAttribute(attributeName, from[attributeName]);
-          }
-        } else {
-          if (!ignoreAttribute(attributeName, to, "remove", ctx)) {
-            to.removeAttribute(attributeName);
-          }
-        }
-      }
-    }
-    function syncInputValue(from, to, ctx) {
-      if (from instanceof HTMLInputElement && to instanceof HTMLInputElement && from.type !== "file") {
-        let fromValue = from.value;
-        let toValue = to.value;
-        syncBooleanAttribute(from, to, "checked", ctx);
-        syncBooleanAttribute(from, to, "disabled", ctx);
-        if (!from.hasAttribute("value")) {
-          if (!ignoreAttribute("value", to, "remove", ctx)) {
-            to.value = "";
-            to.removeAttribute("value");
-          }
-        } else if (fromValue !== toValue) {
-          if (!ignoreAttribute("value", to, "update", ctx)) {
-            to.setAttribute("value", fromValue);
-            to.value = fromValue;
-          }
-        }
-      } else if (from instanceof HTMLOptionElement) {
-        syncBooleanAttribute(from, to, "selected", ctx);
-      } else if (from instanceof HTMLTextAreaElement && to instanceof HTMLTextAreaElement) {
-        let fromValue = from.value;
-        let toValue = to.value;
-        if (ignoreAttribute("value", to, "update", ctx)) {
-          return;
-        }
-        if (fromValue !== toValue) {
-          to.value = fromValue;
-        }
-        if (to.firstChild && to.firstChild.nodeValue !== fromValue) {
-          to.firstChild.nodeValue = fromValue;
-        }
-      }
-    }
-    function handleHeadElement(newHeadTag, currentHead, ctx) {
-      let added = [];
-      let removed = [];
-      let preserved = [];
-      let nodesToAppend = [];
-      let headMergeStyle = ctx.head.style;
-      let srcToNewHeadNodes = /* @__PURE__ */ new Map();
-      for (const newHeadChild of newHeadTag.children) {
-        srcToNewHeadNodes.set(newHeadChild.outerHTML, newHeadChild);
-      }
-      for (const currentHeadElt of currentHead.children) {
-        let inNewContent = srcToNewHeadNodes.has(currentHeadElt.outerHTML);
-        let isReAppended = ctx.head.shouldReAppend(currentHeadElt);
-        let isPreserved = ctx.head.shouldPreserve(currentHeadElt);
-        if (inNewContent || isPreserved) {
-          if (isReAppended) {
-            removed.push(currentHeadElt);
-          } else {
-            srcToNewHeadNodes.delete(currentHeadElt.outerHTML);
-            preserved.push(currentHeadElt);
-          }
-        } else {
-          if (headMergeStyle === "append") {
-            if (isReAppended) {
-              removed.push(currentHeadElt);
-              nodesToAppend.push(currentHeadElt);
-            }
-          } else {
-            if (ctx.head.shouldRemove(currentHeadElt) !== false) {
-              removed.push(currentHeadElt);
-            }
-          }
-        }
-      }
-      nodesToAppend.push(...srcToNewHeadNodes.values());
-      let promises = [];
-      for (const newNode of nodesToAppend) {
-        let newElt = document.createRange().createContextualFragment(newNode.outerHTML).firstChild;
-        if (ctx.callbacks.beforeNodeAdded(newElt) !== false) {
-          if (newElt.href || newElt.src) {
-            let resolve = null;
-            let promise = new Promise(function(_resolve) {
-              resolve = _resolve;
-            });
-            newElt.addEventListener("load", function() {
-              resolve();
-            });
-            promises.push(promise);
-          }
-          currentHead.appendChild(newElt);
-          ctx.callbacks.afterNodeAdded(newElt);
-          added.push(newElt);
-        }
-      }
-      for (const removedElement of removed) {
-        if (ctx.callbacks.beforeNodeRemoved(removedElement) !== false) {
-          currentHead.removeChild(removedElement);
-          ctx.callbacks.afterNodeRemoved(removedElement);
-        }
-      }
-      ctx.head.afterHeadMorphed(currentHead, { added, kept: preserved, removed });
-      return promises;
-    }
-    function noOp() {
-    }
-    function mergeDefaults(config) {
-      let finalConfig = {};
-      Object.assign(finalConfig, defaults);
-      Object.assign(finalConfig, config);
-      finalConfig.callbacks = {};
-      Object.assign(finalConfig.callbacks, defaults.callbacks);
-      Object.assign(finalConfig.callbacks, config.callbacks);
-      finalConfig.head = {};
-      Object.assign(finalConfig.head, defaults.head);
-      Object.assign(finalConfig.head, config.head);
-      return finalConfig;
-    }
-    function createMorphContext(oldNode, newContent, config) {
-      config = mergeDefaults(config);
-      return {
-        target: oldNode,
-        newContent,
-        config,
-        morphStyle: config.morphStyle,
-        ignoreActive: config.ignoreActive,
-        ignoreActiveValue: config.ignoreActiveValue,
-        idMap: createIdMap(oldNode, newContent),
-        deadIds: /* @__PURE__ */ new Set(),
-        callbacks: config.callbacks,
-        head: config.head
-      };
-    }
-    function isIdSetMatch(node1, node2, ctx) {
-      if (node1 == null || node2 == null) {
-        return false;
-      }
-      if (node1.nodeType === node2.nodeType && node1.tagName === node2.tagName) {
-        if (node1.id !== "" && node1.id === node2.id) {
-          return true;
-        } else {
-          return getIdIntersectionCount(ctx, node1, node2) > 0;
-        }
-      }
-      return false;
-    }
-    function isSoftMatch(node1, node2) {
-      if (node1 == null || node2 == null) {
-        return false;
-      }
-      return node1.nodeType === node2.nodeType && node1.tagName === node2.tagName;
-    }
-    function removeNodesBetween(startInclusive, endExclusive, ctx) {
-      while (startInclusive !== endExclusive) {
-        let tempNode = startInclusive;
-        startInclusive = startInclusive.nextSibling;
-        removeNode(tempNode, ctx);
-      }
-      removeIdsFromConsideration(ctx, endExclusive);
-      return endExclusive.nextSibling;
-    }
-    function findIdSetMatch(newContent, oldParent, newChild, insertionPoint, ctx) {
-      let newChildPotentialIdCount = getIdIntersectionCount(ctx, newChild, oldParent);
-      let potentialMatch = null;
-      if (newChildPotentialIdCount > 0) {
-        let potentialMatch2 = insertionPoint;
-        let otherMatchCount = 0;
-        while (potentialMatch2 != null) {
-          if (isIdSetMatch(newChild, potentialMatch2, ctx)) {
-            return potentialMatch2;
-          }
-          otherMatchCount += getIdIntersectionCount(ctx, potentialMatch2, newContent);
-          if (otherMatchCount > newChildPotentialIdCount) {
-            return null;
-          }
-          potentialMatch2 = potentialMatch2.nextSibling;
-        }
-      }
-      return potentialMatch;
-    }
-    function findSoftMatch(newContent, oldParent, newChild, insertionPoint, ctx) {
-      let potentialSoftMatch = insertionPoint;
-      let nextSibling = newChild.nextSibling;
-      let siblingSoftMatchCount = 0;
-      while (potentialSoftMatch != null) {
-        if (getIdIntersectionCount(ctx, potentialSoftMatch, newContent) > 0) {
-          return null;
-        }
-        if (isSoftMatch(newChild, potentialSoftMatch)) {
-          return potentialSoftMatch;
-        }
-        if (isSoftMatch(nextSibling, potentialSoftMatch)) {
-          siblingSoftMatchCount++;
-          nextSibling = nextSibling.nextSibling;
-          if (siblingSoftMatchCount >= 2) {
-            return null;
-          }
-        }
-        potentialSoftMatch = potentialSoftMatch.nextSibling;
-      }
-      return potentialSoftMatch;
-    }
-    function parseContent(newContent) {
-      let parser = new DOMParser();
-      let contentWithSvgsRemoved = newContent.replace(/<svg(\s[^>]*>|>)([\s\S]*?)<\/svg>/gim, "");
-      if (contentWithSvgsRemoved.match(/<\/html>/) || contentWithSvgsRemoved.match(/<\/head>/) || contentWithSvgsRemoved.match(/<\/body>/)) {
-        let content = parser.parseFromString(newContent, "text/html");
-        if (contentWithSvgsRemoved.match(/<\/html>/)) {
-          content.generatedByIdiomorph = true;
-          return content;
-        } else {
-          let htmlElement = content.firstChild;
-          if (htmlElement) {
-            htmlElement.generatedByIdiomorph = true;
-            return htmlElement;
-          } else {
-            return null;
-          }
-        }
-      } else {
-        let responseDoc = parser.parseFromString("<body><template>" + newContent + "</template></body>", "text/html");
-        let content = responseDoc.body.querySelector("template").content;
-        content.generatedByIdiomorph = true;
-        return content;
-      }
-    }
-    function normalizeContent(newContent) {
-      if (newContent == null) {
-        const dummyParent = document.createElement("div");
-        return dummyParent;
-      } else if (newContent.generatedByIdiomorph) {
-        return newContent;
-      } else if (newContent instanceof Node) {
-        const dummyParent = document.createElement("div");
-        dummyParent.append(newContent);
-        return dummyParent;
-      } else {
-        const dummyParent = document.createElement("div");
-        for (const elt of [...newContent]) {
-          dummyParent.append(elt);
-        }
-        return dummyParent;
-      }
-    }
-    function insertSiblings(previousSibling, morphedNode, nextSibling) {
-      let stack = [];
-      let added = [];
-      while (previousSibling != null) {
-        stack.push(previousSibling);
-        previousSibling = previousSibling.previousSibling;
-      }
-      while (stack.length > 0) {
-        let node = stack.pop();
-        added.push(node);
-        morphedNode.parentElement.insertBefore(node, morphedNode);
-      }
-      added.push(morphedNode);
-      while (nextSibling != null) {
-        stack.push(nextSibling);
-        added.push(nextSibling);
-        nextSibling = nextSibling.nextSibling;
-      }
-      while (stack.length > 0) {
-        morphedNode.parentElement.insertBefore(stack.pop(), morphedNode.nextSibling);
-      }
-      return added;
-    }
-    function findBestNodeMatch(newContent, oldNode, ctx) {
-      let currentElement;
-      currentElement = newContent.firstChild;
-      let bestElement = currentElement;
-      let score = 0;
-      while (currentElement) {
-        let newScore = scoreElement(currentElement, oldNode, ctx);
-        if (newScore > score) {
-          bestElement = currentElement;
-          score = newScore;
-        }
-        currentElement = currentElement.nextSibling;
-      }
-      return bestElement;
-    }
-    function scoreElement(node1, node2, ctx) {
-      if (isSoftMatch(node1, node2)) {
-        return 0.5 + getIdIntersectionCount(ctx, node1, node2);
-      }
-      return 0;
-    }
-    function removeNode(tempNode, ctx) {
-      removeIdsFromConsideration(ctx, tempNode);
-      if (ctx.callbacks.beforeNodeRemoved(tempNode) === false) return;
-      tempNode.remove();
-      ctx.callbacks.afterNodeRemoved(tempNode);
-    }
-    function isIdInConsideration(ctx, id) {
-      return !ctx.deadIds.has(id);
-    }
-    function idIsWithinNode(ctx, id, targetNode) {
-      let idSet = ctx.idMap.get(targetNode) || EMPTY_SET;
-      return idSet.has(id);
-    }
-    function removeIdsFromConsideration(ctx, node) {
-      let idSet = ctx.idMap.get(node) || EMPTY_SET;
-      for (const id of idSet) {
-        ctx.deadIds.add(id);
-      }
-    }
-    function getIdIntersectionCount(ctx, node1, node2) {
-      let sourceSet = ctx.idMap.get(node1) || EMPTY_SET;
-      let matchCount = 0;
-      for (const id of sourceSet) {
-        if (isIdInConsideration(ctx, id) && idIsWithinNode(ctx, id, node2)) {
-          ++matchCount;
-        }
-      }
-      return matchCount;
-    }
-    function populateIdMapForNode(node, idMap) {
-      let nodeParent = node.parentElement;
-      let idElements = node.querySelectorAll("[id]");
-      for (const elt of idElements) {
-        let current = elt;
-        while (current !== nodeParent && current != null) {
-          let idSet = idMap.get(current);
-          if (idSet == null) {
-            idSet = /* @__PURE__ */ new Set();
-            idMap.set(current, idSet);
-          }
-          idSet.add(elt.id);
-          current = current.parentElement;
-        }
-      }
-    }
-    function createIdMap(oldContent, newContent) {
-      let idMap = /* @__PURE__ */ new Map();
-      populateIdMapForNode(oldContent, idMap);
-      populateIdMapForNode(newContent, idMap);
-      return idMap;
-    }
-    return {
-      morph,
-      defaults
-    };
-  }();
-  function morphElements(currentElement, newElement, { callbacks, ...options } = {}) {
-    Idiomorph.morph(currentElement, newElement, {
-      ...options,
-      callbacks: new DefaultIdiomorphCallbacks(callbacks)
-    });
-  }
-  function morphChildren(currentElement, newElement) {
-    morphElements(currentElement, newElement.children, {
-      morphStyle: "innerHTML"
-    });
-  }
-  var DefaultIdiomorphCallbacks = class {
-    #beforeNodeMorphed;
-    constructor({ beforeNodeMorphed } = {}) {
-      this.#beforeNodeMorphed = beforeNodeMorphed || (() => true);
-    }
-    beforeNodeAdded = (node) => {
-      return !(node.id && node.hasAttribute("data-turbo-permanent") && document.getElementById(node.id));
-    };
-    beforeNodeMorphed = (currentElement, newElement) => {
-      if (currentElement instanceof Element) {
-        if (!currentElement.hasAttribute("data-turbo-permanent") && this.#beforeNodeMorphed(currentElement, newElement)) {
-          const event = dispatch("turbo:before-morph-element", {
-            cancelable: true,
-            target: currentElement,
-            detail: { currentElement, newElement }
-          });
-          return !event.defaultPrevented;
-        } else {
-          return false;
-        }
-      }
-    };
-    beforeAttributeUpdated = (attributeName, target, mutationType) => {
-      const event = dispatch("turbo:before-morph-attribute", {
-        cancelable: true,
-        target,
-        detail: { attributeName, mutationType }
-      });
-      return !event.defaultPrevented;
-    };
-    beforeNodeRemoved = (node) => {
-      return this.beforeNodeMorphed(node);
-    };
-    afterNodeMorphed = (currentElement, newElement) => {
-      if (currentElement instanceof Element) {
-        dispatch("turbo:morph-element", {
-          target: currentElement,
-          detail: { currentElement, newElement }
-        });
-      }
-    };
-  };
-  var MorphingFrameRenderer = class extends FrameRenderer {
-    static renderElement(currentElement, newElement) {
-      dispatch("turbo:before-frame-morph", {
-        target: currentElement,
-        detail: { currentElement, newElement }
-      });
-      morphChildren(currentElement, newElement);
-    }
-  };
   var PageRenderer = class extends Renderer {
     static renderElement(currentElement, newElement) {
       if (document.body && newElement instanceof HTMLBodyElement) {
@@ -11991,7 +12110,7 @@
         }
       });
       for (const frame of currentElement.querySelectorAll("turbo-frame")) {
-        if (canRefreshFrame(frame)) refreshFrame(frame);
+        if (canRefreshFrame(frame)) frame.reload();
       }
       dispatch("turbo:morph", { detail: { currentElement, newElement } });
     }
@@ -12007,12 +12126,6 @@
   };
   function canRefreshFrame(frame) {
     return frame instanceof FrameElement && frame.src && frame.refresh === "morph" && !frame.closest("[data-turbo-permanent]");
-  }
-  function refreshFrame(frame) {
-    frame.addEventListener("turbo:before-frame-render", ({ detail }) => {
-      detail.render = MorphingFrameRenderer.renderElement;
-    }, { once: true });
-    frame.reload();
   }
   var SnapshotCache = class {
     keys = [];
@@ -12068,7 +12181,7 @@
     renderPage(snapshot, isPreview = false, willRender = true, visit2) {
       const shouldMorphPage = this.isPageRefresh(visit2) && this.snapshot.shouldMorphPage;
       const rendererClass = shouldMorphPage ? MorphingPageRenderer : PageRenderer;
-      const renderer = new rendererClass(this.snapshot, snapshot, rendererClass.renderElement, isPreview, willRender);
+      const renderer = new rendererClass(this.snapshot, snapshot, isPreview, willRender);
       if (!renderer.shouldRender) {
         this.forceReloaded = true;
       } else {
@@ -12078,7 +12191,7 @@
     }
     renderError(snapshot, visit2) {
       visit2?.changeHistory();
-      const renderer = new ErrorRenderer(this.snapshot, snapshot, ErrorRenderer.renderElement, false);
+      const renderer = new ErrorRenderer(this.snapshot, snapshot, false);
       return this.render(renderer);
     }
     clearSnapshotCache() {
@@ -12200,11 +12313,8 @@
     frameRedirector = new FrameRedirector(this, document.documentElement);
     streamMessageRenderer = new StreamMessageRenderer();
     cache = new Cache(this);
-    drive = true;
     enabled = true;
-    progressBarDelay = 500;
     started = false;
-    formMode = "on";
     #pageRefreshDebouncePeriod = 150;
     constructor(recentRequests2) {
       this.recentRequests = recentRequests2;
@@ -12280,10 +12390,28 @@
       this.view.clearSnapshotCache();
     }
     setProgressBarDelay(delay) {
+      console.warn(
+        "Please replace `session.setProgressBarDelay(delay)` with `session.progressBarDelay = delay`. The function is deprecated and will be removed in a future version of Turbo.`"
+      );
       this.progressBarDelay = delay;
     }
-    setFormMode(mode) {
-      this.formMode = mode;
+    set progressBarDelay(delay) {
+      config.drive.progressBarDelay = delay;
+    }
+    get progressBarDelay() {
+      return config.drive.progressBarDelay;
+    }
+    set drive(value) {
+      config.drive.enabled = value;
+    }
+    get drive() {
+      return config.drive.enabled;
+    }
+    set formMode(value) {
+      config.forms.mode = value;
+    }
+    get formMode() {
+      return config.forms.mode;
     }
     get location() {
       return this.history.location;
@@ -12379,12 +12507,12 @@
       this.notifyApplicationAfterVisitingSamePageLocation(oldURL, newURL);
     }
     // Form submit observer delegate
-    willSubmitForm(form, submitter) {
-      const action = getAction$1(form, submitter);
-      return this.submissionIsNavigatable(form, submitter) && locationIsVisitable(expandURL(action), this.snapshot.rootLocation);
+    willSubmitForm(form, submitter2) {
+      const action = getAction$1(form, submitter2);
+      return this.submissionIsNavigatable(form, submitter2) && locationIsVisitable(expandURL(action), this.snapshot.rootLocation);
     }
-    formSubmitted(form, submitter) {
-      this.navigator.submitForm(form, submitter);
+    formSubmitted(form, submitter2) {
+      this.navigator.submitForm(form, submitter2);
     }
     // Page observer delegate
     pageBecameInteractive() {
@@ -12496,12 +12624,12 @@
       });
     }
     // Helpers
-    submissionIsNavigatable(form, submitter) {
-      if (this.formMode == "off") {
+    submissionIsNavigatable(form, submitter2) {
+      if (config.forms.mode == "off") {
         return false;
       } else {
-        const submitterIsNavigatable = submitter ? this.elementIsNavigatable(submitter) : true;
-        if (this.formMode == "optin") {
+        const submitterIsNavigatable = submitter2 ? this.elementIsNavigatable(submitter2) : true;
+        if (config.forms.mode == "optin") {
           return submitterIsNavigatable && form.closest('[data-turbo="true"]') != null;
         } else {
           return submitterIsNavigatable && this.elementIsNavigatable(form);
@@ -12511,7 +12639,7 @@
     elementIsNavigatable(element) {
       const container = findClosestRecursively(element, "[data-turbo]");
       const withinFrame = findClosestRecursively(element, "turbo-frame");
-      if (this.drive || withinFrame) {
+      if (config.drive.enabled || withinFrame) {
         if (container) {
           return container.getAttribute("data-turbo") != "false";
         } else {
@@ -12570,13 +12698,22 @@
     session.clearCache();
   }
   function setProgressBarDelay(delay) {
-    session.setProgressBarDelay(delay);
+    console.warn(
+      "Please replace `Turbo.setProgressBarDelay(delay)` with `Turbo.config.drive.progressBarDelay = delay`. The top-level function is deprecated and will be removed in a future version of Turbo.`"
+    );
+    config.drive.progressBarDelay = delay;
   }
   function setConfirmMethod(confirmMethod) {
-    FormSubmission.confirmMethod = confirmMethod;
+    console.warn(
+      "Please replace `Turbo.setConfirmMethod(confirmMethod)` with `Turbo.config.forms.confirm = confirmMethod`. The top-level function is deprecated and will be removed in a future version of Turbo.`"
+    );
+    config.forms.confirm = confirmMethod;
   }
   function setFormMode(mode) {
-    session.setFormMode(mode);
+    console.warn(
+      "Please replace `Turbo.setFormMode(mode)` with `Turbo.config.forms.mode = mode`. The top-level function is deprecated and will be removed in a future version of Turbo.`"
+    );
+    config.forms.mode = mode;
   }
   var Turbo = /* @__PURE__ */ Object.freeze({
     __proto__: null,
@@ -12587,6 +12724,7 @@
     PageSnapshot,
     FrameRenderer,
     fetch: fetchWithTurboHeaders,
+    config,
     start,
     registerAdapter,
     visit,
@@ -12608,6 +12746,7 @@
     #connected = false;
     #hasBeenLoaded = false;
     #ignoredAttributes = /* @__PURE__ */ new Set();
+    #shouldMorphFrame = false;
     action = null;
     constructor(element) {
       this.element = element;
@@ -12656,7 +12795,8 @@
       }
     }
     sourceURLReloaded() {
-      const { src } = this.element;
+      const { refresh, src } = this.element;
+      this.#shouldMorphFrame = src && refresh === "morph";
       this.element.removeAttribute("complete");
       this.element.src = null;
       this.element.src = src;
@@ -12694,6 +12834,7 @@
           }
         }
       } finally {
+        this.#shouldMorphFrame = false;
         this.fetchResponseLoaded = () => Promise.resolve();
       }
     }
@@ -12718,14 +12859,14 @@
       this.#navigateFrame(element, location2);
     }
     // Form submit observer delegate
-    willSubmitForm(element, submitter) {
-      return element.closest("turbo-frame") == this.element && this.#shouldInterceptNavigation(element, submitter);
+    willSubmitForm(element, submitter2) {
+      return element.closest("turbo-frame") == this.element && this.#shouldInterceptNavigation(element, submitter2);
     }
-    formSubmitted(element, submitter) {
+    formSubmitted(element, submitter2) {
       if (this.formSubmission) {
         this.formSubmission.stop();
       }
-      this.formSubmission = new FormSubmission(this, element, submitter);
+      this.formSubmission = new FormSubmission(this, element, submitter2);
       const { fetchRequest } = this.formSubmission;
       this.prepareRequest(fetchRequest);
       this.formSubmission.start();
@@ -12817,9 +12958,10 @@
     // Private
     async #loadFrameResponse(fetchResponse, document2) {
       const newFrameElement = await this.extractForeignFrameElement(document2.body);
+      const rendererClass = this.#shouldMorphFrame ? MorphingFrameRenderer : FrameRenderer;
       if (newFrameElement) {
         const snapshot = new Snapshot(newFrameElement);
-        const renderer = new FrameRenderer(this, this.view.snapshot, snapshot, FrameRenderer.renderElement, false, false);
+        const renderer = new rendererClass(this, this.view.snapshot, snapshot, false, false);
         if (this.view.renderPromise) await this.view.renderPromise;
         this.changeHistory();
         await this.view.render(renderer);
@@ -12845,9 +12987,9 @@
         request.perform();
       });
     }
-    #navigateFrame(element, url, submitter) {
-      const frame = this.#findFrameElement(element, submitter);
-      frame.delegate.proposeVisitIfNavigatedWithAction(frame, getVisitAction(submitter, element, frame));
+    #navigateFrame(element, url, submitter2) {
+      const frame = this.#findFrameElement(element, submitter2);
+      frame.delegate.proposeVisitIfNavigatedWithAction(frame, getVisitAction(submitter2, element, frame));
       this.#withCurrentNavigationElement(element, () => {
         frame.src = url;
       });
@@ -12919,8 +13061,8 @@
       const { location: location2, redirected, statusCode } = wrapped;
       return session.visit(location2, { response: { redirected, statusCode, responseHTML } });
     }
-    #findFrameElement(element, submitter) {
-      const id = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
+    #findFrameElement(element, submitter2) {
+      const id = getAttribute("data-turbo-frame", submitter2, element) || this.element.getAttribute("target");
       return getFrameElementById(id) ?? this.element;
     }
     async extractForeignFrameElement(container) {
@@ -12942,13 +13084,13 @@
       }
       return null;
     }
-    #formActionIsVisitable(form, submitter) {
-      const action = getAction$1(form, submitter);
+    #formActionIsVisitable(form, submitter2) {
+      const action = getAction$1(form, submitter2);
       return locationIsVisitable(expandURL(action), this.rootLocation);
     }
-    #shouldInterceptNavigation(element, submitter) {
-      const id = getAttribute("data-turbo-frame", submitter, element) || this.element.getAttribute("target");
-      if (element instanceof HTMLFormElement && !this.#formActionIsVisitable(element, submitter)) {
+    #shouldInterceptNavigation(element, submitter2) {
+      const id = getAttribute("data-turbo-frame", submitter2, element) || this.element.getAttribute("target");
+      if (element instanceof HTMLFormElement && !this.#formActionIsVisitable(element, submitter2)) {
         return false;
       }
       if (!this.enabled || id == "_top") {
@@ -12963,7 +13105,7 @@
       if (!session.elementIsNavigatable(element)) {
         return false;
       }
-      if (submitter && !session.elementIsNavigatable(submitter)) {
+      if (submitter2 && !session.elementIsNavigatable(submitter2)) {
         return false;
       }
       return true;
@@ -13317,6 +13459,7 @@
 
   // ../../node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable_stream_source_element.js
   var TurboCableStreamSourceElement = class extends HTMLElement {
+    static observedAttributes = ["channel", "signed-stream-name"];
     async connectedCallback() {
       connectStreamSource(this);
       this.subscription = await subscribeTo(this.channel, {
@@ -13328,6 +13471,13 @@
     disconnectedCallback() {
       disconnectStreamSource(this);
       if (this.subscription) this.subscription.unsubscribe();
+      this.subscriptionDisconnected();
+    }
+    attributeChangedCallback() {
+      if (this.subscription) {
+        this.disconnectedCallback();
+        this.connectedCallback();
+      }
     }
     dispatchMessageEvent(data) {
       const event = new MessageEvent("message", { data });
@@ -13353,9 +13503,9 @@
   function encodeMethodIntoRequestBody(event) {
     if (event.target instanceof HTMLFormElement) {
       const { target: form, detail: { fetchOptions } } = event;
-      form.addEventListener("turbo:submit-start", ({ detail: { formSubmission: { submitter } } }) => {
+      form.addEventListener("turbo:submit-start", ({ detail: { formSubmission: { submitter: submitter2 } } }) => {
         const body = isBodyInit(fetchOptions.body) ? fetchOptions.body : new URLSearchParams();
-        const method = determineFetchMethod(submitter, body, form);
+        const method = determineFetchMethod(submitter2, body, form);
         if (!/get/i.test(method)) {
           if (/post/i.test(method)) {
             body.delete("_method");
@@ -13367,8 +13517,8 @@
       }, { once: true });
     }
   }
-  function determineFetchMethod(submitter, body, form) {
-    const formMethod = determineFormMethod(submitter);
+  function determineFetchMethod(submitter2, body, form) {
+    const formMethod = determineFormMethod(submitter2);
     const overrideMethod = body.get("_method");
     const method = form.getAttribute("method") || "get";
     if (typeof formMethod == "string") {
@@ -13379,12 +13529,12 @@
       return method;
     }
   }
-  function determineFormMethod(submitter) {
-    if (submitter instanceof HTMLButtonElement || submitter instanceof HTMLInputElement) {
-      if (submitter.name === "_method") {
-        return submitter.value;
-      } else if (submitter.hasAttribute("formmethod")) {
-        return submitter.formMethod;
+  function determineFormMethod(submitter2) {
+    if (submitter2 instanceof HTMLButtonElement || submitter2 instanceof HTMLInputElement) {
+      if (submitter2.name === "_method") {
+        return submitter2.value;
+      } else if (submitter2.hasAttribute("formmethod")) {
+        return submitter2.formMethod;
       } else {
         return null;
       }
@@ -15870,7 +16020,7 @@
 
 @hotwired/turbo/dist/turbo.es2017-esm.js:
   (*!
-  Turbo 8.0.5
+  Turbo 8.0.10
   Copyright © 2024 37signals LLC
    *)
 */

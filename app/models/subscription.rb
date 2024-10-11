@@ -18,7 +18,10 @@
 #  fk_rails_...  (book_id => books.id)
 #  fk_rails_...  (user_id => users.id)
 #
+# app/models/subscription.rb
 class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :book
+
+  validates :user_id, uniqueness: { scope: :book_id, message: "has already subscribed to this book" }
 end

@@ -16,7 +16,7 @@ class BookMetadata
   end
 
   def attributes
-    { description: get_description }
+    { description: get_description, image: get_image }
   end
 
   def get_description
@@ -25,7 +25,11 @@ class BookMetadata
     first_paragraph ? first_paragraph.inner_text.gsub(/\[\d+\]/, '') : nil
   end
 
-  def image
-    nil
+  def get_image
+    meta_tag_content('og:image', name_attribute: :property)
+  end
+
+  def meta_tag_content(name, name_attribute: :name)
+    doc.at_css("meta[#{name_attribute}='#{name}']")&.attributes&.fetch("content", nil)&.text
   end
 end

@@ -18,6 +18,8 @@ class Book < ApplicationRecord
   has_many :subscriptions
   has_many :subscribers, through: :subscriptions, source: :user
 
+  has_one_attached :image
+
   before_save :set_wiki_url
   after_commit :set_description, on: :create
 

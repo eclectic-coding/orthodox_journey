@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
+  # include Dry::Effects::Handler.Reader(:current_user)
+  # around_action :set_current_user
+
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
+  # allow_browser versions: :modern
 
   protect_from_forgery with: :exception
 
@@ -23,4 +26,10 @@ class ApplicationController < ActionController::Base
       user_root_path
     end
   end
+
+  # private
+  #
+  # def set_current_user
+  #   with_current_user(current_user) { yield }
+  # end
 end

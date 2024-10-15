@@ -36,7 +36,7 @@
 
 <%= content_tag(:div, class: "mb-3") do %>
   <%= f.label :description, class: "form-label" %>
-  <%= f.text_area :description, class: "form-control" %>
+  <%= f.text_area :description, row: "10", class: "form-control h-32" %>
 <% end if @book.persisted?%>
 
 <%= f.submit class: "btn btn-primary" %>

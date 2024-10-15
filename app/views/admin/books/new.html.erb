@@ -1,6 +1,7 @@
-<%= component "form_card", title: "Create Book" do %>
-  <%= form_with(model: @book, url: admin_books_path) do |f| %>
-    <%= render partial: "form", locals: { f: f, book: @book } %>
+<div class="mt-8">
+  <%= component "form_card", title: "Create Book" do %>
+    <%= form_with(model: @book, url: admin_books_path) do |f| %>
+      <%= render partial: "form", locals: { f: f, book: @book } %>
+    <% end %>
   <% end %>
-
-<% end %>
+</div>

@@ -36,7 +36,7 @@ class Admin::BooksController < ApplicationController
 
   def book_params
     params.require(:book)
-          .permit(:title, :author, :authored_at, :description, :reading, :completed, :wiki_url, :reading_url)
+          .permit(:title, :author, :authored_at, :authored_year, :description, :reading, :completed, :wiki_url, :reading_url)
           .tap do |book_params|
       if book_params[:authored_at].present?
         book_params[:authored_at] = DateTime.new(book_params[:authored_at].to_i)

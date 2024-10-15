@@ -1,6 +1,6 @@
 class Admin::BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: %i[ show edit ]
+  before_action :set_book, only: %i[ show edit update ]
 
   layout "admin"
 
@@ -30,6 +30,14 @@ class Admin::BooksController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    if @book.update(book_params)
+      redirect_to admin_books_path
+    else
+      render :edit
+    end
   end
 
   private

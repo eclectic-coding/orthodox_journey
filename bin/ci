@@ -15,7 +15,7 @@ echo "[ bin/ci ] security vulnerabilities with bundle audit"
 bundle exec bundle-audit check --update
 
 echo "[ bin/ci ] ERB Linting: Running erblint with autocorrect"
-bin/erblint --lint-all -a
+bin/erb_lint --lint-all -a
 
 echo "[ bin/ci ] Linting: Running rubocop"
 bin/rubocop

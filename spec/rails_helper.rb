@@ -42,10 +42,6 @@ RSpec.configure do |config|
   config.include ViewComponent::SystemTestHelpers, type: :component
   config.include Capybara::RSpecMatchers, type: :component
 
-  config.define_derived_metadata(file_path: %r{/spec/views/components}) do |metadata|
-    metadata[:type] = :view_component
-  end
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join("spec/fixtures")
@@ -55,10 +51,8 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers # helpers for system tests
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :component
-  config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::ControllerHelpers, type: :component
-  config.include ViewComponent::TestHelpers, type: :component
-  config.include Capybara::RSpecMatchers, type: :component
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Turbo::FramesHelper, type: :system
   config.include Turbo::StreamsHelper, type: :system
 

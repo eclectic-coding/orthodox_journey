@@ -26,7 +26,6 @@ class Admin::BooksController < ApplicationController
     else
       render :new
     end
-
   end
 
   def edit

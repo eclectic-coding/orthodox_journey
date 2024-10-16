@@ -1,18 +1,15 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "system_helper"
 
-describe BookRow::Component do
-  let(:book) { create(:book) }
-  let(:component) { BookRow::Component.new(book: book) }
-
-  subject { rendered_content }
-
+describe BookRow::Component, type: :component do
   it "renders" do
-    render_inline(component)
+    book = create(:book)
 
-    expect(page).to have_content(book.title)
-    expect(page).to have_content(book.author)
-    expect(page).to have_content(book.authored_at.strftime("%y"))
+    render_inline(described_class.new(book: book))
+
+    expect(subject).to have_content(book.title)
+    expect(subject).to have_content(book.author)
+    expect(subject).to have_content(book.authored_at.strftime("%y"))
   end
 end

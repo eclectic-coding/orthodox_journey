@@ -61,8 +61,8 @@
         "lines": [
           1,
           1,
-          1,
-          1,
+          0,
+          0,
           null,
           null
         ]
@@ -76,99 +76,14 @@
           1,
           null,
           1,
-          4,
-          4,
-          4,
-          null,
-          null
-        ]
-      },
-      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/controllers/admin/books_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          2,
-          null,
-          null
-        ]
-      },
-      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
           0,
           0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/policies/admin_policy.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
           0,
           null,
           null
         ]
       },
-      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/policies/application_policy.rb": {
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/book_row/component.rb": {
         "lines": [
           null,
           null,
@@ -176,52 +91,22 @@
           1,
           null,
           1,
-          1,
-          1,
-          null,
-          null,
-          1,
           0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          1,
           0,
           0,
           null,
-          null,
-          1,
           0,
           null,
           null,
-          1,
           null,
+          null
+        ]
+      },
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/application_view_component.rb": {
+        "lines": [
           1,
-          null,
+          1,
+          1,
           null
         ]
       },
@@ -245,49 +130,104 @@
           null,
           1,
           1,
-          1,
           null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
           1,
           1,
           null,
           1,
           null,
           1,
-          2,
-          2,
-          null,
-          null,
           1,
-          2,
-          null,
-          null
-        ]
-      },
-      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/page_title/component.rb": {
-        "lines": [
-          null,
+          1,
           null,
           1,
           1,
-          null
-        ]
-      },
-      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/application_view_component.rb": {
-        "lines": [
+          1,
+          null,
+          1,
+          null,
           1,
           1,
           1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
           null
         ]
       },
       "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/controllers/admin/application_controller.rb": {
         "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/controllers/admin/books_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           0,
           0,
           0,
@@ -328,6 +268,47 @@
           null,
           0,
           0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/controllers/application_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           0
         ],
         "branches": {
@@ -490,6 +471,82 @@
         "branches": {
         }
       },
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/policies/admin_policy.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/policies/application_policy.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
       "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/policies/books_policy.rb": {
         "lines": [
           0,
@@ -514,20 +571,14 @@
         "branches": {
         }
       },
-      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/book_row/component.rb": {
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/book_row/preview.rb": {
         "lines": [
           null,
           null,
           0,
-          0,
           null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
+          null,
+          null,
           0,
           0,
           0
@@ -535,12 +586,34 @@
         "branches": {
         }
       },
-      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/book_row/preview.rb": {
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/form_card/component.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/form_card/preview.rb": {
         "lines": [
           null,
           null,
           0,
           null,
+          null,
+          null,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/views/components/page_title/component.rb": {
+        "lines": [
           null,
           null,
           0,
@@ -598,6 +671,6 @@
         }
       }
     },
-    "timestamp": 1728676751
+    "timestamp": 1729084981
   }
 }

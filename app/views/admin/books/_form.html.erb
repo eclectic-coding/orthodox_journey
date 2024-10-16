@@ -32,11 +32,11 @@
 <%= content_tag(:div, class: "mb-3") do %>
   <%= f.label :wiki_url, class: "form-label" %>
   <%= f.text_field :wiki_url, class: "form-control" %>
-<% end if @book.persisted?%>
+<% end if @book.persisted? %>
 
 <%= content_tag(:div, class: "mb-3") do %>
   <%= f.label :description, class: "form-label" %>
   <%= f.text_area :description, row: "10", class: "form-control h-32" %>
-<% end if @book.persisted?%>
+<% end if @book.persisted? %>
 
 <%= f.submit class: "btn btn-primary" %>

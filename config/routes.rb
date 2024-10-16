@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
-    resources :books, only: %i[index]
+    resources :books, only: %i[index show]
   end
 
   # Defines the root path route ("/")

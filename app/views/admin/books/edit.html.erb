@@ -1,5 +1,5 @@
 <div class="mt-8">
-  <%= component "form_card", title: "Edit Book" do %>
+  <%= component "Admin::FormCard", title: "Edit Book" do %>
     <%= form_with(model: @book, url: admin_book_path) do |f| %>
       <%= render partial: "form", locals: { f: f, book: @book } %>
     <% end %>

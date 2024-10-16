@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserRow::Component < ApplicationViewComponent
+class Admin::UserRowComponent < ApplicationComponent
   option :user
 
   attr_reader :user, :sign_in_date

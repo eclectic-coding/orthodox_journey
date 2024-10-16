@@ -1,4 +1,4 @@
-<%= component "page_title", title: "Users" %>
+<%= component "UI::PageTitle", title: "Users" %>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -16,7 +16,7 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-        <%= component "user_row", user: user %>
+        <%= component "Admin::UserRow", user: user %>
       <% end %>
     </tbody>
   </table>

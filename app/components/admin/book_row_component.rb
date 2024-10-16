@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BookRow::Component < ApplicationViewComponent
+class Admin::BookRowComponent < ApplicationComponent
   option :book
 
   def user_actions

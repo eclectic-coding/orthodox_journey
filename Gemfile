@@ -58,5 +58,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "view_component-contrib", "~> 0.2.3"

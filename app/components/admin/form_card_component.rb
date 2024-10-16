@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class FormCard::Component < ApplicationViewComponent
+class Admin::FormCardComponent < ApplicationComponent
   option :title, required: true
 end

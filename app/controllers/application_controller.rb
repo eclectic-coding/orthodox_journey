@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
-  # include Dry::Effects::Handler.Reader(:current_user)
-  # around_action :set_current_user
 
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   # allow_browser versions: :modern
@@ -9,8 +7,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-  append_view_path Rails.root.join("app", "views", "controllers")
 
   protected
 

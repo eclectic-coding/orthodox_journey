@@ -1,10 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Books::Subscriptions", type: :request do
-  describe "GET /create" do
+  before do
+    sign_in create(:user)
+    @book = create(:book)
+  end
+
+  describe "POST /create" do
     it "returns http success" do
-      get "/books/subscriptions/create"
-      expect(response).to have_http_status(:success)
+      post book_subscriptions_path(@book), params: { book_id: @book.id }
+      expect(response).to have_http_status(:redirect)
     end
   end
 end

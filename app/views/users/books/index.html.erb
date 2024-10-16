@@ -1,4 +1,4 @@
-<%= component "page_title", title: "My Books" %>
+<%= component "UI::PageTitle", title: "My Books" %>
 <div class="relative overflow-x-auto my-4">
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         <% @my_books.each do |book| %>
-          <%= component "book_row", book: book %>
+          <%= component "Admin::BookRow", book: book %>
         <% end %>
       </tbody>
     </table>
@@ -23,7 +23,7 @@
 
 </div>
 
-<%= component "page_title", title: "Available Books" %>
+<%= component "UI::PageTitle", title: "Available Books" %>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -40,7 +40,7 @@
     </thead>
     <tbody>
       <% @books.each do |book| %>
-        <%= component "book_row", book: book %>
+        <%= component "Admin::BookRow", book: book %>
       <% end %>
     </tbody>
   </table>

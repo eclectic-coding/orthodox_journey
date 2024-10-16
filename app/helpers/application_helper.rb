@@ -1,6 +1,6 @@
 module ApplicationHelper
   def component(name, *args, **kwargs, &block)
-    component = name.to_s.camelize.constantize::Component
+    component = (name + "_component").to_s.camelize.constantize
     render(component.new(*args, **kwargs), &block)
   end
 end

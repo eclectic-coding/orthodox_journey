@@ -1,4 +1,4 @@
-<%= component "page_title", title: "Books" do %>
+<%= component "UI::PageTitle", title: "Books" do %>
   <%= link_to "New Book", new_admin_book_path, class: "btn btn-primary" %>
 <% end %>
 
@@ -17,9 +17,8 @@
     </thead>
     <tbody>
       <% @books.each do |book| %>
-        <%= component "book_row", book: book %>
+        <%= component "Admin::BookRow", book: book %>
       <% end %>
     </tbody>
   </table>
 </div>
-

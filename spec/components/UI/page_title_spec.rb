@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-describe PageTitle::Component do
+describe UI::PageTitleComponent, type: :component do
   let(:options) { { title: "Title" } }
-  let(:component) { PageTitle::Component.new(**options) }
+  let(:component) { UI::PageTitleComponent.new(**options) }
 
   subject { rendered_content }
 

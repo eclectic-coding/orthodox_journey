@@ -1,0 +1,42 @@
+<div class="mb-3">
+  <%= f.label :title, class: "form-label font-semibold" %>
+  <%= f.text_field :title, class: "form-control", autofocus: true %>
+</div>
+
+<div class="mb-3">
+  <%= f.label :author, class: "form-label" %>
+  <%= f.text_field :author, class: "form-control" %>
+</div>
+
+<div class="mb-3">
+  <%= f.label :authored_year, "Year", class: "form-label" %>
+  <%= f.number_field :authored_year, value: @book.authored_at ? @book.authored_at.year : '', class: "form-control", min: 50, max: 9999 %>
+</div>
+
+<div class="flex gap-x-6 mb-3">
+  <div class="flex">
+    <%= f.check_box :reading, { class: "form-check-input" }, 'true', 'false' %>
+    <%= f.label :reading, class: "form-check-label" %>
+  </div>
+  <div class="flex">
+    <%= f.check_box :completed, { class: "form-check-input" }, 'true', 'false' %>
+    <%= f.label :completed, class: "form-check-label" %>
+  </div>
+</div>
+
+<div class="mb-3">
+  <%= f.label :reading_url, class: "form-label" %>
+  <%= f.text_field :reading_url, class: "form-control" %>
+</div>
+
+<%= content_tag(:div, class: "mb-3") do %>
+  <%= f.label :wiki_url, class: "form-label" %>
+  <%= f.text_field :wiki_url, class: "form-control" %>
+<% end if @book.persisted? %>
+
+<%= content_tag(:div, class: "mb-3") do %>
+  <%= f.label :description, class: "form-label" %>
+  <%= f.text_area :description, row: "10", class: "form-control h-32" %>
+<% end if @book.persisted? %>
+
+<%= f.submit class: "btn btn-primary" %>

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "system_helper"
 
-describe UserRow::Component do
+describe Admin::UserRowComponent, type: :component do
   let(:user) { create(:user) }
   let(:options) { { user: user } }
-  let(:component) { UserRow::Component.new(**options) }
+  let(:component) { Admin::UserRowComponent.new(**options) }
 
   subject { rendered_content }
 

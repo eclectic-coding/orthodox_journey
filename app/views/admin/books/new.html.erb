@@ -1,2 +1,7 @@
-<h1>Admin::Books#new</h1>
-<p>Find me in app/views/admin/books/new.html.erb</p>
+<div class="mt-8">
+  <%= component "Admin::FormCard", title: "Create Book" do %>
+    <%= form_with(model: @book, url: admin_books_path) do |f| %>
+      <%= render partial: "form", locals: { f: f, book: @book } %>
+    <% end %>
+  <% end %>
+</div>

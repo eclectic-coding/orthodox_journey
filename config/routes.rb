@@ -21,12 +21,12 @@ Rails.application.routes.draw do
     namespace :admin do
       root to: "dashboard#show"
       resources :users, only: %i[index show]
-      resources :books, only: %i[index new edit]
+      resources :books
     end
   end
 
   namespace :users do
-    resources :books, only: %i[index]
+    resources :books, only: %i[index show]
   end
 
   # Defines the root path route ("/")

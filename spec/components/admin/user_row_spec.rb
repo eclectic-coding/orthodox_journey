@@ -15,6 +15,6 @@ describe Admin::UserRowComponent, type: :component do
     expect(page).to have_content(user.email)
     expect(page).to have_content(user.role)
     expect(page).to have_content(user.sign_in_count)
-    expect(page).to have_content(component.sign_in_date)
+    expect(page).to have_content(component.sign_in_date.to_s)
   end
 end

@@ -142,6 +142,36 @@
           null
         ]
       },
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/jobs/book_metadata_job.rb": {
+        "lines": [
+          null,
+          1,
+          1,
+          null,
+          1,
+          2,
+          2,
+          2,
+          null,
+          2,
+          2,
+          2,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/jobs/application_job.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/eclecticcoding/development/projects/rails_orthodox_journey/app/models/book.rb": {
         "lines": [
           null,
@@ -630,6 +660,6 @@
         }
       }
     },
-    "timestamp": 1729110833
+    "timestamp": 1729136789
   }
 }

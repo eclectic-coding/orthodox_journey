@@ -18,7 +18,6 @@ class Admin::BooksController < ApplicationController
   end
 
   def create
-    p "params: #{params}"
     @book = Book.create!(book_params)
 
     if @book.save

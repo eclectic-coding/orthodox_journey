@@ -1,6 +1,6 @@
 class Admin::BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: %i[ show edit update ]
+  before_action :set_book, only: %i[ show edit update destroy ]
 
   layout "admin"
 
@@ -36,6 +36,13 @@ class Admin::BooksController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+
+    redirect_to admin_books_path
   end
 
   private

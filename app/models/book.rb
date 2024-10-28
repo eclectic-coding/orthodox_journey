@@ -30,6 +30,10 @@ class Book < ApplicationRecord
   validates :author, presence: true
   validates :authored_at, presence: true
 
+  def has_subscriptions?
+    subscriptions.exists?
+  end
+
   private
 
   def set_wiki_url

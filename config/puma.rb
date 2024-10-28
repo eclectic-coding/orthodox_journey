@@ -27,11 +27,11 @@ threads threads_count, threads_count
 port ENV.fetch("PORT", 3000)
 
 # Enable SSL
-ssl_bind '0.0.0.0', '3001', {
-  key: 'config/certs/localhost.key',
-  cert: 'config/certs/localhost.crt',
-  verify_mode: 'none'
-}
+# ssl_bind '0.0.0.0', '3001', {
+#   key: 'config/certs/localhost.key',
+#   cert: 'config/certs/localhost.crt',
+#   verify_mode: 'none'
+# }
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
 

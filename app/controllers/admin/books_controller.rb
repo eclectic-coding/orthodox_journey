@@ -39,8 +39,9 @@ class Admin::BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
-    @book.destroy
+    unless @book.has_subscriptions?
+      @book.destroy
+    end
 
     redirect_to admin_books_path
   end

@@ -1,6 +1,6 @@
 class Admin::BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: %i[ show edit update ]
+  before_action :set_book, only: %i[ show edit update destroy ]
 
   layout "admin"
 
@@ -18,7 +18,6 @@ class Admin::BooksController < ApplicationController
   end
 
   def create
-    p "params: #{params}"
     @book = Book.create!(book_params)
 
     if @book.save
@@ -37,6 +36,14 @@ class Admin::BooksController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    unless @book.has_subscriptions?
+      @book.destroy
+    end
+
+    redirect_to admin_books_path
   end
 
   private
